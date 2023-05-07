@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="rojo">#99991246</color>
+    <color name="azul">#CCE6F4</color>
+    <color name="isesion">#BA324F</color>
+    <color name="ccuenta">#EEF6FD</color>
 </resources>

@@ -2,14 +2,13 @@ package com.fao.orderfy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.fao.orderfy.databinding.ActivityMainBinding
+import com.fao.orderfy.databinding.ActivityClienteBinding
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class ClienteActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityClienteBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityClienteBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 }
