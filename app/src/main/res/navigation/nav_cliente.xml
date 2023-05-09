@@ -9,5 +9,14 @@
         android:id="@+id/clienteHomeFragment"
         android:name="com.fao.orderfy.ClienteHomeFragment"
         android:label="fragment_cliente_home"
-        tools:layout="@layout/fragment_cliente_home" />
+        tools:layout="@layout/fragment_cliente_home" >
+        <action
+            android:id="@+id/action_clienteHomeFragment_to_clienteLocalVistaFragment"
+            app:destination="@id/clienteLocalVistaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clienteLocalVistaFragment"
+        android:name="com.fao.orderfy.ClienteLocalVistaFragment"
+        android:label="fragment_cliente_local_vista"
+        tools:layout="@layout/fragment_cliente_local_vista" />
 </navigation>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".IniciarSesionFragment">
+    tools:context=".ContinuarCrearCuentaFragment">
 
     <View
         android:id="@+id/fcirculo"
@@ -12,11 +12,11 @@
         android:layout_height="351dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="572dp"
         android:layout_marginEnd="252dp"
+        android:layout_marginBottom="576dp"
         android:background="@drawable/circulo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <View
         android:id="@+id/scirculo"
@@ -24,12 +24,12 @@
         android:layout_height="200dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="308dp"
-        android:layout_marginBottom="628dp"
+        android:layout_marginStart="300dp"
 
+        android:layout_marginTop="632dp"
         android:background="@drawable/scirculo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/tcirculo"
@@ -37,11 +37,11 @@
         android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="370dp"
-        android:layout_marginBottom="576dp"
+        android:layout_marginStart="370dp"
+        android:layout_marginBottom="440dp"
         android:background="@drawable/tcirculo"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -69,22 +69,22 @@
         app:layout_constraintVertical_bias="0.19999999" />
 
     <TextView
-        android:id="@+id/tvIniciarSesion"
+        android:id="@+id/tvCrearCuentaC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesión"
-        android:textSize="22sp"
+        android:text="Registrate"
         android:textColor="#000000"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.131" />
+        app:layout_constraintVertical_bias="0.07999998" />
 
     <TextView
-        android:id="@+id/tvUser"
+        android:id="@+id/tvUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Usuario"
@@ -94,25 +94,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvIniciarSesion"
+        app:layout_constraintTop_toBottomOf="@+id/tvCrearCuentaC"
         app:layout_constraintVertical_bias="0.060000002" />
 
     <EditText
-        android:id="@+id/etUser"
+        android:id="@+id/etUserName"
         android:layout_width="287dp"
         android:layout_height="45dp"
         android:background="@drawable/text_circular"
         android:backgroundTint="#D9D9D9"
-        android:hint="Ingrese Usuario"
+        android:hint="Max28"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUser"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserName"
         app:layout_constraintVertical_bias="0.01999998" />
 
     <TextView
-        android:id="@+id/tvPWD"
+        android:id="@+id/tvPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Contraseña"
@@ -122,73 +122,89 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.19"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUser"
+        app:layout_constraintTop_toBottomOf="@+id/etUserName"
         app:layout_constraintVertical_bias="0.110000014" />
 
     <EditText
-        android:id="@+id/etPWD"
+        android:id="@+id/etPassword"
         android:layout_width="287dp"
         android:layout_height="45dp"
         android:background="@drawable/text_circular"
         android:backgroundTint="#D9D9D9"
-        android:hint="******"
+        android:hint="*****"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPWD"
+        app:layout_constraintTop_toBottomOf="@+id/tvPassword"
+        app:layout_constraintVertical_bias="0.01999998" />
+
+    <TextView
+        android:id="@+id/tvConfirmPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirmar Contraseña"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword"
+        app:layout_constraintVertical_bias="0.110000014" />
+
+    <EditText
+        android:id="@+id/etConfirmPassword"
+        android:layout_width="287dp"
+        android:layout_height="45dp"
+        android:background="@drawable/text_circular"
+        android:backgroundTint="#D9D9D9"
+        android:hint="*****"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvConfirmPassword"
         app:layout_constraintVertical_bias="0.01999998" />
 
     <Button
-        android:id="@+id/btnIniciarSesionC"
+        android:id="@+id/btnCrearCuentaC"
         android:layout_width="264dp"
         android:layout_height="43dp"
         android:backgroundTint="@color/azul"
-        android:text="Iniciar Sesión"
+        android:text="Crear Cuenta"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPWD"
+        app:layout_constraintTop_toBottomOf="@+id/etConfirmPassword"
         app:layout_constraintVertical_bias="0.25" />
 
-    <TextView
-        android:id="@+id/tvRecuperacionPWD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="¿Has olvidado tu contraseña?"
-        android:textColor="#797474"
-        app:layout_constraintBottom_toTopOf="@+id/btnIniciarSesionC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPWD"
-        app:layout_constraintVertical_bias="0.16000003" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="¿Aun no tienes cuenta?"
+        android:text="¿Ya tienes cuenta?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.33"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIniciarSesionC"
+        app:layout_constraintTop_toBottomOf="@+id/btnCrearCuentaC"
         app:layout_constraintVertical_bias="0.01999998" />
 
     <TextView
-        android:id="@+id/tvRegistrar"
+        android:id="@+id/tvIniciarSesionCC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrate"
+        android:text="Iniciar Sesión"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="#55A1E6"
-        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintHorizontal_bias="0.7"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIniciarSesionC"
+        app:layout_constraintTop_toBottomOf="@+id/btnCrearCuentaC"
         app:layout_constraintVertical_bias="0.043" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

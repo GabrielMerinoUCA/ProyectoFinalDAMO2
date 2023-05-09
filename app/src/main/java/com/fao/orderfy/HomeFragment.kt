@@ -48,10 +48,9 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(fbinding.root).navigate(R.id.action_homeFragment_to_crearCuentaFragment)
         }
         fbinding.btnIniciarSesion.setOnClickListener {
-            //Navigation.findNavController(fbinding.root).navigate(R.id.action_homeFragment_to_iniciarSesionFragment)
-            var intent = Intent();
-            intent = Intent(activity, ClienteActivity::class.java)
-            startActivity(intent)
+            Navigation.findNavController(fbinding.root).navigate(R.id.action_homeFragment_to_iniciarSesionFragment)
+
+
 
         }
     }

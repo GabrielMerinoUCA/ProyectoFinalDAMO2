@@ -1,13 +1,12 @@
 package com.fao.orderfy
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import com.fao.orderfy.databinding.FragmentIniciarSesionBinding
+import com.fao.orderfy.databinding.FragmentContinuarCrearCuentaBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -16,14 +15,14 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [IniciarSesionFragment.newInstance] factory method to
+ * Use the [ContinuarCrearCuentaFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class IniciarSesionFragment : Fragment() {
+class ContinuarCrearCuentaFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var fbinding: FragmentIniciarSesionBinding
+    private lateinit var fbinding: FragmentContinuarCrearCuentaBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,13 +37,12 @@ class IniciarSesionFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        fbinding = FragmentIniciarSesionBinding.inflate(layoutInflater)
-        fbinding.tvRegistrar.setOnClickListener {
-            Navigation.findNavController(fbinding.root).navigate(R.id.action_iniciarSesionFragment_to_crearCuentaFragment)
+        fbinding = FragmentContinuarCrearCuentaBinding.inflate(layoutInflater)
+        fbinding.tvIniciarSesionCC.setOnClickListener {
+            Navigation.findNavController(fbinding.root).navigate(R.id.action_continuarCrearCuentaFragment_to_iniciarSesionFragment)
         }
-        fbinding.btnIniciarSesionC.setOnClickListener {
-            var intent = Intent(activity, ClienteActivity::class.java)
-            startActivity(intent)
+        fbinding.btnCrearCuentaC.setOnClickListener {
+            Navigation.findNavController(fbinding.root).navigate(R.id.action_continuarCrearCuentaFragment_to_iniciarSesionFragment)
         }
         return fbinding.root
     }
@@ -56,12 +54,12 @@ class IniciarSesionFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment IniciarSesionFragment.
+         * @return A new instance of fragment ContinuarCrearCuentaFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            IniciarSesionFragment().apply {
+            ContinuarCrearCuentaFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

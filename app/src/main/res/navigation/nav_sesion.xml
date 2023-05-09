@@ -21,10 +21,30 @@
         android:id="@+id/iniciarSesionFragment"
         android:name="com.fao.orderfy.IniciarSesionFragment"
         android:label="fragment_iniciar_sesion"
-        tools:layout="@layout/fragment_iniciar_sesion" />
+        tools:layout="@layout/fragment_iniciar_sesion" >
+        <action
+            android:id="@+id/action_iniciarSesionFragment_to_crearCuentaFragment"
+            app:destination="@id/crearCuentaFragment" />
+    </fragment>
     <fragment
         android:id="@+id/crearCuentaFragment"
         android:name="com.fao.orderfy.CrearCuentaFragment"
         android:label="fragment_crear_cuenta"
-        tools:layout="@layout/fragment_crear_cuenta" />
+        tools:layout="@layout/fragment_crear_cuenta" >
+        <action
+            android:id="@+id/action_crearCuentaFragment_to_iniciarSesionFragment"
+            app:destination="@id/iniciarSesionFragment" />
+        <action
+            android:id="@+id/action_crearCuentaFragment_to_continuarCrearCuentaFragment"
+            app:destination="@id/continuarCrearCuentaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/continuarCrearCuentaFragment"
+        android:name="com.fao.orderfy.ContinuarCrearCuentaFragment"
+        android:label="fragment_continuar_crear_cuenta"
+        tools:layout="@layout/fragment_continuar_crear_cuenta" >
+        <action
+            android:id="@+id/action_continuarCrearCuentaFragment_to_iniciarSesionFragment"
+            app:destination="@id/iniciarSesionFragment" />
+    </fragment>
 </navigation>

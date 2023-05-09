@@ -1,11 +1,20 @@
 package com.fao.orderfy.Recyclerview
 
+import android.content.Context
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.get
 import androidx.recyclerview.widget.RecyclerView
 import com.fao.orderfy.Entidades.Producto
 import com.fao.orderfy.R
@@ -26,7 +35,15 @@ class PopularProdAdapter (
 
         holder.tvNombre.text = producto.nombre
         holder.tvDesc.text = producto.descripcion
-        holder.tvImagen = producto.imagen
+
+        /*val buffer = producto.imagen.planes[0].buffer
+        val bytes = ByteArray(buffer.remaining())
+        buffer.get(bytes)
+        val myBitmap: Bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+        val resources = Resources.getSystem()
+        val myDrawable: Drawable = BitmapDrawable(resources,  myBitmap)*/
+
+        holder.tvImagen.setImageDrawable(producto.imagen)
 
 
         /*holder.constrain.setOnClickListener {
