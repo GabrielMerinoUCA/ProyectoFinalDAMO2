@@ -1,4 +1,4 @@
-package com.fao.orderfy.Recyclerview
+package com.fao.orderfy.presentacion.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.fao.orderfy.Entidades.Producto
+import com.fao.orderfy.datos.Entidades.Producto
 import com.fao.orderfy.R
 
 class ProdAdapter (

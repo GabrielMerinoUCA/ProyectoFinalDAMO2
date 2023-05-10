@@ -1,4 +1,4 @@
-package com.fao.orderfy.Entidades
+package com.fao.orderfy.datos.Entidades
 
 import android.graphics.drawable.Drawable
 import android.media.Image

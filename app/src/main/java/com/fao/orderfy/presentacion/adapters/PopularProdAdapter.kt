@@ -1,24 +1,13 @@
-package com.fao.orderfy.Recyclerview
+package com.fao.orderfy.presentacion.adapters
 
-import android.content.Context
-import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.graphics.drawable.toBitmap
-import androidx.core.graphics.get
 import androidx.recyclerview.widget.RecyclerView
-import com.fao.orderfy.Entidades.Producto
+import com.fao.orderfy.datos.Entidades.Producto
 import com.fao.orderfy.R
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class PopularProdAdapter (
     val listaProd: MutableList<Producto>,

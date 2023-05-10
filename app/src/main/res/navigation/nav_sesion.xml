@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.fao.orderfy.HomeFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/iniciarSesionFragment"
-        android:name="com.fao.orderfy.IniciarSesionFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.IniciarSesionFragment"
         android:label="fragment_iniciar_sesion"
         tools:layout="@layout/fragment_iniciar_sesion" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/crearCuentaFragment"
-        android:name="com.fao.orderfy.CrearCuentaFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.CrearCuentaFragment"
         android:label="fragment_crear_cuenta"
         tools:layout="@layout/fragment_crear_cuenta" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/continuarCrearCuentaFragment"
-        android:name="com.fao.orderfy.ContinuarCrearCuentaFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.ContinuarCrearCuentaFragment"
         android:label="fragment_continuar_crear_cuenta"
         tools:layout="@layout/fragment_continuar_crear_cuenta" >
         <action

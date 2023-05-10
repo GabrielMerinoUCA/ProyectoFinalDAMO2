@@ -5,7 +5,7 @@
     android:layout_width="200dp"
     android:layout_marginStart="5dp"
     android:layout_height="200dp"
-    tools:context=".ClienteLocalVistaFragment">
+    tools:context=".presentacion.fragmentos.ClienteLocalVistaFragment">
 
     <ImageView
         android:id="@+id/ivProd"
