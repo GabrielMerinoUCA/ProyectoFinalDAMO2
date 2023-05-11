@@ -25,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:textColor="#175676"
+        android:textColorHint="#175676"
         android:textSize="13sp"
         android:layout_marginStart="10dp"
         android:hint="Nombe Producto"

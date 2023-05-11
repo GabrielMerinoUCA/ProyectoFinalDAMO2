@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
 
     private fun iniciar() {
         fbinding.btnCrearCuenta.setOnClickListener {
-            Navigation.findNavController(fbinding.root).navigate(R.id.action_homeFragment_to_crearCuentaFragment)
+            Navigation.findNavController(fbinding.root).navigate(R.id.action_homeFragment_to_registroFragment)
         }
         fbinding.btnIniciarSesion.setOnClickListener {
             Navigation.findNavController(fbinding.root).navigate(R.id.action_homeFragment_to_iniciarSesionFragment)

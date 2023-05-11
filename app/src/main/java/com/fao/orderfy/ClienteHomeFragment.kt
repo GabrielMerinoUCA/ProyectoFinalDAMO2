@@ -50,9 +50,8 @@ class ClienteHomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         fbinding = FragmentClienteHomeBinding.inflate(layoutInflater)
-        fbinding.imageView5.setOnClickListener{
-            Navigation.findNavController(fbinding.root).navigate(R.id.action_clienteHomeFragment_to_clienteLocalVistaFragment)
-        }
+
+        inicio()
        // Prueba recyclerview de manera horizontal
        fbinding.rvPopularProd.layoutManager
         var image :Drawable? = fbinding.root.context.getDrawable(R.drawable.hamburguesa)
@@ -79,6 +78,36 @@ class ClienteHomeFragment : Fragment() {
         fbinding.rvPopularProd.adapter = PopularProdAdapter(listaProd)
 
         return fbinding.root
+    }
+
+    private fun inicio() {
+
+        fbinding.imageView5.setOnClickListener{
+            Navigation.findNavController(fbinding.root).navigate(R.id.action_clienteHomeFragment_to_clienteLocalVistaFragment)
+
+        }
+        fbinding.btnAbrirSlide.setOnClickListener {
+
+            val layoutParams = fbinding.slidingPaneLayout.layoutParams as ViewGroup.MarginLayoutParams
+            val screenWidth = resources.displayMetrics.widthPixels
+            val halfScreenOffset = 0.8f
+            val halfScreenWidth = (screenWidth * halfScreenOffset).toInt()
+
+            layoutParams.width = halfScreenWidth
+            fbinding.slidingPaneLayout.layoutParams = layoutParams
+            fbinding.slidingPaneLayout.requestLayout()
+            if (fbinding.slidingPaneLayout.isOpen) {
+                fbinding.slidingPaneLayout.closePane()
+            } else {
+                fbinding.slidingPaneLayout.openPane()
+            }
+        }
+        fbinding.btnMiPerfil.setOnClickListener {
+            Navigation.findNavController(fbinding.root).navigate(R.id.action_clienteHomeFragment_to_perfilFragment)
+        }
+        fbinding.btnMisOrdenes.setOnClickListener {
+            Navigation.findNavController(fbinding.root).navigate(R.id.action_clienteHomeFragment_to_misOrdenesFragment)
+        }
     }
 
     companion object {

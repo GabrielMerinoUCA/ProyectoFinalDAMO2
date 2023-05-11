@@ -52,10 +52,19 @@ class ClienteLocalVistaFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         fbinding = FragmentClienteLocalVistaBinding.inflate(layoutInflater)
-        bottomSheet = fbinding.bottomSheet
-        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-        bottomSheetBehavior.peekHeight
+        iniciar()
+
+        return fbinding.root
+
+
+    }
+
+    private fun iniciar() {
+        configurarBottomSheet()
+        probarRecyvler()
+    }
+
+    private fun probarRecyvler() {
         var image : Drawable? = fbinding.root.context.getDrawable(R.drawable.hamburguesa)
         //image.setImageResource(R.drawable.hamburguesa)
         var prod = Producto(1,
@@ -100,13 +109,14 @@ class ClienteLocalVistaFragment : Fragment() {
         fbinding.rvProd.layoutManager = layoutManager
         fbinding.rvProd.adapter = ProdAdapter(listaProd)
 
-
-        return fbinding.root
-
-
     }
 
-
+    private fun configurarBottomSheet() {
+        bottomSheet = fbinding.bottomSheet
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        bottomSheetBehavior.peekHeight
+    }
 
 
     companion object {

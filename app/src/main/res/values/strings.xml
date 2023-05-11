@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="encabezado">Pide rápidamente comida en nuestro campus</string>
     <string name="subencabezado">Elige entre todos los locales del Food Park</string>
+    <string name="aviso_registro_local">Espere una respuesta en los próximos 7 días. Si no puede iniciar sesion después de 7 dias, considerese rechazado.</string>
+    <string name="desc_prod_ex">Una hamburguesa triple con bacon y queso es una hamburguesa de tres capas con carne, tocino y queso derretido. Es abundante y deliciosa.</string>
 </resources>

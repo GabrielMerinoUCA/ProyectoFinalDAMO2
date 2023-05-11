@@ -13,10 +13,76 @@
         <action
             android:id="@+id/action_clienteHomeFragment_to_clienteLocalVistaFragment"
             app:destination="@id/clienteLocalVistaFragment" />
+        <action
+            android:id="@+id/action_clienteHomeFragment_to_perfilFragment"
+            app:destination="@id/perfilFragment" />
+        <action
+            android:id="@+id/action_clienteHomeFragment_to_misOrdenesFragment"
+            app:destination="@id/misOrdenesFragment" />
     </fragment>
     <fragment
         android:id="@+id/clienteLocalVistaFragment"
         android:name="com.fao.orderfy.ClienteLocalVistaFragment"
         android:label="fragment_cliente_local_vista"
-        tools:layout="@layout/fragment_cliente_local_vista" />
+        tools:layout="@layout/fragment_cliente_local_vista" >
+        <action
+            android:id="@+id/action_clienteLocalVistaFragment_to_platilloFragment"
+            app:destination="@id/platilloFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.fao.orderfy.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_perfilFragment_to_editarPerfilFragment"
+            app:destination="@id/editarPerfilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/misOrdenesFragment"
+        android:name="com.fao.orderfy.MisOrdenesFragment"
+        android:label="fragment_mis_ordenes"
+        tools:layout="@layout/fragment_mis_ordenes" >
+        <action
+            android:id="@+id/action_misOrdenesFragment_to_ordenEspecificaFragment"
+            app:destination="@id/ordenEspecificaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editarPerfilFragment"
+        android:name="com.fao.orderfy.EditarPerfilFragment"
+        android:label="fragment_editar_perfil"
+        tools:layout="@layout/fragment_editar_perfil" />
+    <fragment
+        android:id="@+id/platilloFragment"
+        android:name="com.fao.orderfy.PlatilloFragment"
+        android:label="fragment_platillo"
+        tools:layout="@layout/fragment_platillo" >
+        <action
+            android:id="@+id/action_platilloFragment_to_ordenFragment"
+            app:destination="@id/ordenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ordenEspecificaFragment"
+        android:name="com.fao.orderfy.OrdenEspecificaFragment"
+        android:label="fragment_orden_especifica"
+        tools:layout="@layout/fragment_orden_especifica" />
+    <fragment
+        android:id="@+id/ordenFragment"
+        android:name="com.fao.orderfy.OrdenFragment"
+        android:label="fragment_orden"
+        tools:layout="@layout/fragment_orden" >
+        <action
+            android:id="@+id/action_ordenFragment_to_ordenRealizadaFragment"
+            app:destination="@id/ordenRealizadaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ordenRealizadaFragment"
+        android:name="com.fao.orderfy.OrdenRealizadaFragment"
+        android:label="fragment_orden_realizada"
+        tools:layout="@layout/fragment_orden_realizada" />
+    <fragment
+        android:id="@+id/ordenEnCursoFragment"
+        android:name="com.fao.orderfy.OrdenEnCursoFragment"
+        android:label="fragment_orden_en_curso"
+        tools:layout="@layout/fragment_orden_en_curso" />
 </navigation>

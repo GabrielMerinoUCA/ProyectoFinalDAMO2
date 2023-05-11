@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ClienteActivity">
 
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView2"
         android:name="androidx.navigation.fragment.NavHostFragment"
