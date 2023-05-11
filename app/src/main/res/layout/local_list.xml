@@ -9,7 +9,7 @@
     android:layout_alignParentLeft="true"
     android:layout_alignParentTop="true"
     android:background="@drawable/prod_rectangulo"
-    tools:context=".ClienteHomeFragment">
+    tools:context=".presentacion.fragmentos.ClienteHomeFragment">
 
     <ImageView
         android:id="@+id/imageView4"

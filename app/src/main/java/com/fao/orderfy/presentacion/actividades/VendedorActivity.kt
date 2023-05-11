@@ -1,7 +1,8 @@
-package com.fao.orderfy
+package com.fao.orderfy.presentacion.actividades
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.fao.orderfy.R
 import com.fao.orderfy.databinding.ActivityVendedorBinding
 
 class VendedorActivity : AppCompatActivity() {

@@ -13,19 +13,19 @@
         android:theme="@style/Theme.OrderFy"
         tools:targetApi="31">
         <activity
-            android:name=".VendedorActivity"
+            android:name=".presentacion.actividades.VendedorActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".AdminActivity"
+            android:name=".presentacion.actividades.AdminActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ClienteActivity"
+            android:name=".presentacion.actividades.ClienteActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".presentacion.actividades.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>

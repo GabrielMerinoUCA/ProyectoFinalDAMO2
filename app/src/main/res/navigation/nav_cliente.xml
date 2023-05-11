@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/clienteHomeFragment"
-        android:name="com.fao.orderfy.ClienteHomeFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.ClienteHomeFragment"
         android:label="fragment_cliente_home"
         tools:layout="@layout/fragment_cliente_home" >
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/clienteLocalVistaFragment"
-        android:name="com.fao.orderfy.ClienteLocalVistaFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.ClienteLocalVistaFragment"
         android:label="fragment_cliente_local_vista"
         tools:layout="@layout/fragment_cliente_local_vista" >
         <action
