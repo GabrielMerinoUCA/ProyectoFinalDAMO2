@@ -8,8 +8,9 @@ $nombreTienda = $_POST['nombreTienda'];
 $horaApertura = $_POST['horaApertura'];
 $horaCierre = $_POST['horaCierre'];
 $pwd = $_POST['pwd'];
+$estado = $_POST['estado'];
 
-$q = 'INSERT INTO registro(nombre, apellido, nombreUsuario, nombreTienda, horaApertura, horaCierre, pwd, estado) VALUES ("' . $nombre . '","' . $apellido . '","' . $nombreUsuario . '","' . $nombreTienda . '","' . $horaApertura . '","' . $horaCierre . '","' . $pwd . '","'. 1 . '")';
+$q = 'INSERT INTO registro(nombre, apellido, nombreUsuario, nombreTienda, horaApertura, horaCierre, pwd, estado) VALUES ("' . $nombre . '","' . $apellido . '","' . $nombreUsuario . '","' . $nombreTienda . '","' . $horaApertura . '","' . $horaCierre . '","' . $pwd . '","'. $estado . '")';
 $query = mysqli_query($con, $q);
 
 if($query == true){

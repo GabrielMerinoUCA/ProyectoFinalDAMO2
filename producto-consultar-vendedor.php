@@ -1,9 +1,21 @@
 <?php
+
 require_once 'conexion.php';
 
-$idTienda = $_POST['idTienda'];
+$idVendedor = $_POST['idVendedor'];
 
-$q = 'SELECT * FROM producto WHERE idTienda = ' . $idTienda;
+//Obtener el idTienda del vendedor
+
+$q = "SELECT * FROM vendedor WHERE idVendedor = '$idVendedor'";
+$query = mysqli_query($con, $q);
+
+while($row = $query->fetch_array()){
+    $idTienda = $row['idTienda'];
+}
+
+//Obtener los productos de la tienda
+
+$q = "SELECT * FROM producto WHERE idTienda = '$idTienda'";
 $query = mysqli_query($con, $q);
 
 while($row = $query->fetch_array()){
@@ -11,4 +23,5 @@ while($row = $query->fetch_array()){
 }
 
 echo json_encode($json);
+
 ?>
