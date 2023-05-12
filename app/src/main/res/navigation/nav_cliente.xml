@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/perfilFragment"
-        android:name="com.fao.orderfy.PerfilFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.PerfilFragment"
         android:label="fragment_perfil"
         tools:layout="@layout/fragment_perfil" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/misOrdenesFragment"
-        android:name="com.fao.orderfy.MisOrdenesFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.MisOrdenesFragment"
         android:label="fragment_mis_ordenes"
         tools:layout="@layout/fragment_mis_ordenes" >
         <action
@@ -49,12 +49,12 @@
     </fragment>
     <fragment
         android:id="@+id/editarPerfilFragment"
-        android:name="com.fao.orderfy.EditarPerfilFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.EditarPerfilFragment"
         android:label="fragment_editar_perfil"
         tools:layout="@layout/fragment_editar_perfil" />
     <fragment
         android:id="@+id/platilloFragment"
-        android:name="com.fao.orderfy.PlatilloFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.PlatilloFragment"
         android:label="fragment_platillo"
         tools:layout="@layout/fragment_platillo" >
         <action
@@ -63,12 +63,12 @@
     </fragment>
     <fragment
         android:id="@+id/ordenEspecificaFragment"
-        android:name="com.fao.orderfy.OrdenEspecificaFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.OrdenEspecificaFragment"
         android:label="fragment_orden_especifica"
         tools:layout="@layout/fragment_orden_especifica" />
     <fragment
         android:id="@+id/ordenFragment"
-        android:name="com.fao.orderfy.OrdenFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.OrdenFragment"
         android:label="fragment_orden"
         tools:layout="@layout/fragment_orden" >
         <action
@@ -77,12 +77,12 @@
     </fragment>
     <fragment
         android:id="@+id/ordenRealizadaFragment"
-        android:name="com.fao.orderfy.OrdenRealizadaFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.OrdenRealizadaFragment"
         android:label="fragment_orden_realizada"
         tools:layout="@layout/fragment_orden_realizada" />
     <fragment
         android:id="@+id/ordenEnCursoFragment"
-        android:name="com.fao.orderfy.OrdenEnCursoFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.OrdenEnCursoFragment"
         android:label="fragment_orden_en_curso"
         tools:layout="@layout/fragment_orden_en_curso" />
 </navigation>

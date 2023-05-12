@@ -10,7 +10,7 @@
     android:layout_marginTop="10dp"
     android:layout_marginRight="28dp"
     android:background="@drawable/list_orden_rect"
-    tools:context=".OrdenFragment">
+    tools:context=".presentacion.fragmentos.OrdenFragment">
 
     <ImageView
         android:id="@+id/ivProd"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PerfilFragment">
+    tools:context=".presentacion.fragmentos.PerfilFragment">
     <View
         android:id="@+id/fcirculo"
         android:layout_width="351dp"

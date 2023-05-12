@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/registroFragment"
-        android:name="com.fao.orderfy.RegistroFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.RegistroFragment"
         android:label="fragment_registro"
         tools:layout="@layout/fragment_registro" >
         <action
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/registroVendedorFragment"
-        android:name="com.fao.orderfy.RegistroVendedorFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.RegistroVendedorFragment"
         android:label="fragment_registro_vendedor"
         tools:layout="@layout/fragment_registro_vendedor" >
         <action
@@ -73,7 +73,7 @@
     </fragment>
     <fragment
         android:id="@+id/continuarRegistroVendedorFragment"
-        android:name="com.fao.orderfy.ContinuarRegistroVendedorFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.ContinuarRegistroVendedorFragment"
         android:label="fragment_continuar_registro_vendedor"
         tools:layout="@layout/fragment_continuar_registro_vendedor" />
 </navigation>
