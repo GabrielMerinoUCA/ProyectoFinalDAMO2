@@ -1,12 +1,13 @@
 <?php 
 require_once 'conexion.php';
 
+$idCliente = $_POST['idCliente'];
 $nombre = $_POST['nombre'];
 $apellido = $_POST['apellido'];
 $nombreUsuario = $_POST['nombreUsuario'];
 $pwd = $_POST['pwd'];
 
-$q = 'INSERT INTO cliente(nombre, apellido, nombreUsuario, pwd) VALUES ("' . $nombre . '","' . $apellido . '","' . $nombreUsuario . '","' . $pwd . '")';
+$q = 'UPDATE cliente SET nombre = "' . $nombre . '", apellido = "' . $apellido . '", nombreUsuario = "' . $nombreUsuario . '", pwd = "' . $pwd . '" WHERE idCliente = "' . $idCliente . '"';
 $query = mysqli_query($con, $q);
 
 if($query == true){
