@@ -1,8 +1,6 @@
 package com.fao.orderfy.datos.Entidades
 
-import android.graphics.drawable.Drawable
-import android.media.Image
-import android.widget.ImageView
+import  android.graphics.drawable.Drawable
 import java.time.LocalTime
 
 class Producto(
@@ -13,6 +11,5 @@ class Producto(
     var disponibilidad: Boolean,
     var tiempoEstimado: LocalTime,
     var imagen: Drawable,
-    var idTienda: Int
-
+    var idTienda: Int,
 )
