@@ -42,54 +42,6 @@ class ClienteLocalVistaFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun iniciar() {
         configurarBottomSheet()
-        probarRecyvler()
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun probarRecyvler() {
-        var image : Drawable? = fbinding.root.context.getDrawable(R.drawable.hamburguesa)
-        //image.setImageResource(R.drawable.hamburguesa)
-        var prod = Producto(1,
-            "manuela",
-            "XD",
-            130.00,
-            true,
-            LocalTime.now(),
-            image!!,
-            1)
-        var prod1 = Producto(2,
-            "manuela",
-            "XD",
-            130.00,
-            true,
-            LocalTime.now(),
-            image,
-            1)
-        listaProd.add(prod)
-        listaProd.add(prod1)
-        var prod3 = Producto(1,
-            "manuela",
-            "XD",
-            130.00,
-            true,
-            LocalTime.now(),
-            image!!,
-            1)
-        var prod4 = Producto(2,
-            "manuela",
-            "XD",
-            130.00,
-            true,
-            LocalTime.now(),
-            image,
-            1)
-        listaProd.add(prod3)
-        listaProd.add(prod4)
-        val layoutManager = GridLayoutManager(activity, 2)
-
-
-        fbinding.rvProd.layoutManager = layoutManager
-        fbinding.rvProd.adapter = ProdAdapter(listaProd)
 
     }
 

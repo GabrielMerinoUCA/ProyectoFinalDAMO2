@@ -34,29 +34,8 @@ class ClienteHomeFragment : Fragment() {
 
         inicio()
        // Prueba recyclerview de manera horizontal
-       fbinding.rvPopularProd.layoutManager
-        var image :Drawable? = fbinding.root.context.getDrawable(R.drawable.hamburguesa)
         //image.setImageResource(R.drawable.hamburguesa)
-        var prod = Producto(1,
-        "manuela",
-        "XD",
-        130.00,
-        true,
-        LocalTime.now(),
-        image!!,
-        1)
-        var prod1 = Producto(2,
-            "manuela",
-            "XD",
-            130.00,
-            true,
-            LocalTime.now(),
-            image,
-            1)
-        listaProd.add(prod)
-        listaProd.add(prod1)
-        fbinding.rvPopularProd.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        fbinding.rvPopularProd.adapter = PopularProdAdapter(listaProd)
+
 
         return fbinding.root
     }
