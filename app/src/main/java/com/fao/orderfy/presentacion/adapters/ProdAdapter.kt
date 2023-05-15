@@ -1,5 +1,7 @@
 package com.fao.orderfy.presentacion.adapters
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,9 +23,10 @@ class ProdAdapter (
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val producto = listaProd[position]
 //        Se le asignan los valores al RV, lo modifica el que lo va a hacer att KEVIN
-//        holder.tvNombre.text = producto.nombre
-//        holder.tvPrecio.text = producto.precio.toString()
-//        holder.tvImagen.setImageDrawable(producto.imagen)
+        holder.tvNombre.text = producto.nombre
+        holder.tvPrecio.text = producto.precio.toString()
+        val bitmap: Bitmap? = BitmapFactory.decodeByteArray(producto.imagen, 0, producto.imagen.size)
+        holder.tvImagen.setImageBitmap(bitmap)
 
 
     }

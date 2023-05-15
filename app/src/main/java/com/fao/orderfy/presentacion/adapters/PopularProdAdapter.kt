@@ -1,5 +1,7 @@
 package com.fao.orderfy.presentacion.adapters
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,8 +33,8 @@ class PopularProdAdapter (
         val myBitmap: Bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
         val resources = Resources.getSystem()
         val myDrawable: Drawable = BitmapDrawable(resources,  myBitmap)*/
-
-        holder.tvImagen.setImageDrawable(producto.imagen)
+        val bitmap: Bitmap? = BitmapFactory.decodeByteArray(producto.imagen, 0, producto.imagen.size)
+        holder.tvImagen.setImageBitmap(bitmap)
 
 
         /*holder.constrain.setOnClickListener {
