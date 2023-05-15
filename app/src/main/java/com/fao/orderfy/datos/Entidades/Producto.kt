@@ -10,6 +10,6 @@ class Producto(
     var precio: Double,
     var disponibilidad: Boolean,
     var tiempoEstimado: LocalTime,
-    var imagen: Drawable,
+    var imagen: ByteArray,
     var idTienda: Int,
 )

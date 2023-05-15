@@ -53,6 +53,12 @@ class ClienteLocalVistaFragment : Fragment() {
         bottomSheetBehavior.peekHeight
     }
 
+    //Codigo para que el rv se mire en dos columnas
+
+//    val layoutManager = GridLayoutManager(activity, 2)
+//    fbinding.rvProd.layoutManager = layoutManager
+//    fbinding.rvProd.adapter = ProdAdapter(listaProd)
+
 
 
 }

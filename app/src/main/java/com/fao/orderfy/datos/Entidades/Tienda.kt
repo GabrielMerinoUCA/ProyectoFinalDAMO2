@@ -8,7 +8,7 @@ class Tienda(
     var horaApertura: Time,
     var horaCierre: Time,
     var idTienda: Int,
-    var logo: Image,
+    var logo: ByteArray,
     var nombre: String,
 )
 

@@ -33,8 +33,6 @@ class ClienteHomeFragment : Fragment() {
         fbinding = FragmentClienteHomeBinding.inflate(layoutInflater)
 
         inicio()
-       // Prueba recyclerview de manera horizontal
-        //image.setImageResource(R.drawable.hamburguesa)
 
 
         return fbinding.root
