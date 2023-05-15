@@ -56,6 +56,7 @@ interface DaoProducto {
         @Field("idTienda") idTienda: Int
     ): Call<JsonArray>
 
+    //todo(revisar que onda con que hay dos metodos de consultar)
     /**
      *
      */
