@@ -11,8 +11,7 @@ $query = mysqli_query($con, $q);
 $usuarioObtenido = $query ->fetch_array();
 
 if($usuarioObtenido == null){
-    echo 'false';
-    return;
+    $json[] = array('response' => 'false');
 }else{
     if($nombreUsuario == $usuarioObtenido['nombreUsuario'] && $pwd == $usuarioObtenido['pwd']){
         $json[] = array('response' => 'true');
