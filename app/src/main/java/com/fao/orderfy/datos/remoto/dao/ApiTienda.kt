@@ -1,4 +1,4 @@
-package com.fao.orderfy.datos.dao
+package com.fao.orderfy.datos.remoto.dao
 
 import com.google.gson.JsonArray
 import retrofit2.Call
@@ -7,7 +7,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 
-interface DaoTienda {
+interface ApiTienda {
     /**
      * Concultar todos los registros de tiendas
      */

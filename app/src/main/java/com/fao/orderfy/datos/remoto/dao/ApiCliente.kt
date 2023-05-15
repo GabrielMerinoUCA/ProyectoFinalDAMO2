@@ -1,4 +1,4 @@
-package com.fao.orderfy.datos.dao
+package com.fao.orderfy.datos.remoto.dao
 
 import com.google.gson.JsonArray
 import retrofit2.Call
@@ -6,7 +6,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
-interface DaoCliente {
+interface ApiCliente {
     /**
      * Registrar nuevo cliente
      */

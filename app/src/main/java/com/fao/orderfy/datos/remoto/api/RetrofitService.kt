@@ -1,4 +1,4 @@
-package com.fao.orderfy.datos.api
+package com.fao.orderfy.datos.remoto.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -1,4 +1,4 @@
-package com.fao.orderfy.datos.dao
+package com.fao.orderfy.datos.remoto.dao
 
 import com.google.gson.JsonArray
 import retrofit2.Call
@@ -6,7 +6,7 @@ import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
-interface DaoProducto {
+interface ApiProducto {
 
     /**
      * Insertar Producto a una tienda por medio del id vendedor porque un vendedor solo tiene una tienda
