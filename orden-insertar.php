@@ -5,9 +5,8 @@ require_once 'conexion.php';
 $horaPedido = $_POST['horaPedido'];
 $idCliente = $_POST['idCliente'];
 $idProducto = $_POST['idProducto'];
-$estado = $_POST['estado'];
 
-$q = 'INSERT INTO orden(horaPedido, idCliente, idProducto, estado) VALUES ("' . $horaPedido . '","' . $idCliente . '","' . $idProducto . '","' . $estado . '")';
+$q = 'INSERT INTO orden(horaPedido, idCliente, idProducto, estado) VALUES ("' . $horaPedido . '","' . $idCliente . '","' . $idProducto . '","' . 0 . '")';
 $query = mysqli_query($con, $q);
 
 if($query == true){
