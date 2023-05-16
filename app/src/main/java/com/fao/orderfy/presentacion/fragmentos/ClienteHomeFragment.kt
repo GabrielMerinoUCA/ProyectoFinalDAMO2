@@ -43,34 +43,6 @@ class ClienteHomeFragment : Fragment() {
         fbinding.ivPrueba.setOnClickListener {
             Navigation.findNavController(fbinding.root).navigate(R.id.action_clienteHomeFragment_to_clienteLocalVistaFragment)
         }
-
-
-        fbinding.btnAbrirSlide.setOnClickListener {
-
-            val layoutParams = fbinding.slidingPaneLayout.layoutParams as ViewGroup.MarginLayoutParams
-            val screenWidth = resources.displayMetrics.widthPixels
-            val halfScreenOffset = 0.8f
-            val halfScreenWidth = (screenWidth * halfScreenOffset).toInt()
-
-            layoutParams.width = halfScreenWidth
-            fbinding.slidingPaneLayout.openPane()
-            fbinding.slidingPaneLayout.layoutParams = layoutParams
-            fbinding.slidingPaneLayout.requestLayout()
-            if (fbinding.slidingPaneLayout.isVisible ) {
-                fbinding.slidingPaneLayout.closePane()
-                fbinding.slidingPaneLayout.visibility = View.INVISIBLE
-            }else {
-                fbinding.slidingPaneLayout.visibility = View.VISIBLE
-                fbinding.slidingPaneLayout.openPane()
-
-            }
-        }
-        fbinding.btnMiPerfil.setOnClickListener {
-            Navigation.findNavController(fbinding.root).navigate(R.id.action_clienteHomeFragment_to_perfilFragment)
-        }
-        fbinding.btnMisOrdenes.setOnClickListener {
-            Navigation.findNavController(fbinding.root).navigate(R.id.action_clienteHomeFragment_to_misOrdenesFragment)
-        }
     }
 
 
