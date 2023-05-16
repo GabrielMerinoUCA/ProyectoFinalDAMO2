@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2023 at 11:44 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: May 16, 2023 at 02:39 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,6 +35,13 @@ CREATE TABLE `administrador` (
   `pwd` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `administrador`
+--
+
+INSERT INTO `administrador` (`idAdministrador`, `nombre`, `apellido`, `nombreUsuario`, `pwd`) VALUES
+(1, 'Kevin', 'Perez', 'admin', '12345');
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +56,14 @@ CREATE TABLE `cliente` (
   `pwd` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `cliente`
+--
+
+INSERT INTO `cliente` (`idCliente`, `nombre`, `apellido`, `nombreUsuario`, `pwd`) VALUES
+(1, 'Gabriel', 'Mayorga', 'Gabox28', '1234'),
+(2, 'Kevin', 'Perez', 'KevinPO', '12345');
+
 -- --------------------------------------------------------
 
 --
@@ -58,11 +73,20 @@ CREATE TABLE `cliente` (
 CREATE TABLE `orden` (
   `idOrden` int(11) NOT NULL,
   `horaPedido` time NOT NULL,
-  `horaReclamo` time NOT NULL,
+  `horaReclamo` time DEFAULT NULL,
+  `cantidad` int(11) NOT NULL,
   `estado` int(11) NOT NULL,
   `idCliente` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orden`
+--
+
+INSERT INTO `orden` (`idOrden`, `horaPedido`, `horaReclamo`, `cantidad`, `estado`, `idCliente`, `idProducto`) VALUES
+(1, '16:25:00', '17:23:00', 0, 2, 1, 1),
+(2, '16:25:00', NULL, 4, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -77,9 +101,17 @@ CREATE TABLE `producto` (
   `imagen` blob NOT NULL,
   `descripcion` varchar(200) NOT NULL,
   `disponibilidad` tinyint(1) NOT NULL,
-  `tiempoEstimado` time NOT NULL,
+  `tiempoEstimado` int(11) NOT NULL,
   `idTienda` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `producto`
+--
+
+INSERT INTO `producto` (`idProducto`, `nombre`, `precio`, `imagen`, `descripcion`, `disponibilidad`, `tiempoEstimado`, `idTienda`) VALUES
+(1, 'La Malcriada', 120, '', 'Hamburguesa doble con queso', 1, 10, 1),
+(3, 'La Mafiosa', 120, '', 'Hamburguesa doble con queso', 1, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -99,6 +131,14 @@ CREATE TABLE `registro` (
   `estado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `registro`
+--
+
+INSERT INTO `registro` (`idRegistro`, `nombre`, `apellido`, `nombreUsuario`, `nombreTienda`, `pwd`, `horaApertura`, `horaCierre`, `estado`) VALUES
+(2, 'Ilan', 'Ruiz', 'Ilan', 'Fifa shop', '1234', '12:00:00', '18:00:00', 1),
+(3, 'Yanila', 'Perez', 'YPerez', 'Pets shop', '1234', '12:00:00', '18:00:00', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -108,11 +148,19 @@ CREATE TABLE `registro` (
 CREATE TABLE `tienda` (
   `idTienda` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
-  `logo` blob NOT NULL,
+  `logo` blob DEFAULT NULL,
   `horaCierre` time NOT NULL,
   `horaApertura` time NOT NULL,
   `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tienda`
+--
+
+INSERT INTO `tienda` (`idTienda`, `nombre`, `logo`, `horaCierre`, `horaApertura`, `estado`) VALUES
+(1, 'Papa delta', '', '14:30:00', '08:30:00', 0),
+(5, 'Fifa shop', NULL, '18:00:00', '12:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -126,6 +174,14 @@ CREATE TABLE `vendedor` (
   `nombreUsuario` varchar(50) NOT NULL,
   `pwd` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `vendedor`
+--
+
+INSERT INTO `vendedor` (`idTienda`, `idVendedor`, `nombreUsuario`, `pwd`) VALUES
+(1, 4, 'SoyKevinn', '1234'),
+(5, 9, 'Ilan', '1234');
 
 --
 -- Indexes for dumped tables
@@ -185,43 +241,43 @@ ALTER TABLE `vendedor`
 -- AUTO_INCREMENT for table `administrador`
 --
 ALTER TABLE `administrador`
-  MODIFY `idAdministrador` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idAdministrador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `orden`
 --
 ALTER TABLE `orden`
-  MODIFY `idOrden` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idOrden` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `registro`
 --
 ALTER TABLE `registro`
-  MODIFY `idRegistro` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idRegistro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tienda`
 --
 ALTER TABLE `tienda`
-  MODIFY `idTienda` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTienda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `vendedor`
 --
 ALTER TABLE `vendedor`
-  MODIFY `idVendedor` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idVendedor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
