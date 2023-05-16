@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.RoomDatabase
 import androidx.room.Database
 import androidx.room.Room
+import androidx.room.TypeConverters
 import com.fao.orderfy.datos.Entidades.Administrador
 import com.fao.orderfy.datos.Entidades.Cliente
 import com.fao.orderfy.datos.Entidades.Orden
@@ -11,6 +12,7 @@ import com.fao.orderfy.datos.Entidades.Producto
 import com.fao.orderfy.datos.Entidades.Registro
 import com.fao.orderfy.datos.Entidades.Tienda
 import com.fao.orderfy.datos.Entidades.Vendedor
+import com.fao.orderfy.datos.TimeTypeConverter
 import com.fao.orderfy.datos.local.dao.DaoAdministrador
 import com.fao.orderfy.datos.local.dao.DaoCliente
 import com.fao.orderfy.datos.local.dao.DaoOrden
@@ -25,6 +27,7 @@ import com.fao.orderfy.datos.local.dao.DaoVendedor
     version = 1,
     exportSchema = false
 )
+@TypeConverters(TimeTypeConverter::class) // Add this line
 
 abstract class BD : RoomDatabase() {
     abstract fun DaoAdministrador(): DaoAdministrador
