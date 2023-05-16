@@ -7,7 +7,6 @@ import com.fao.orderfy.datos.Entidades.Tienda
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val tiendas: ArrayList<Tienda> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

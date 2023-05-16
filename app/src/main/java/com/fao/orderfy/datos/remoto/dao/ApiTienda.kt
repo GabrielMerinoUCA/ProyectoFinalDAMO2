@@ -9,7 +9,7 @@ import retrofit2.http.POST
 
 interface ApiTienda {
     /**
-     * Concultar todos los registros de tiendas
+     * Consultar todos los registros de tiendas
      */
     @GET("tienda-consultar.php")
     fun consultarTienda(): Call<JsonArray>

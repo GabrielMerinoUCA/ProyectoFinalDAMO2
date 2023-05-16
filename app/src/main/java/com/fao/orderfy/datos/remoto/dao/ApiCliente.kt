@@ -4,6 +4,7 @@ import com.google.gson.JsonArray
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiCliente {
@@ -51,8 +52,10 @@ interface ApiCliente {
         @Field("pwd") pwd: String
     ): Call<JsonArray>
 
-    //TODO(Hay que poner la funcion para consultar clientes)
-
-
+    /**
+     * Consultar registro de clientes
+     */
+    @GET("cliente-consultar.php")
+    fun consultarCliente(): Call<JsonArray>
 
 }

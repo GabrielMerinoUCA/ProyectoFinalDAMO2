@@ -14,13 +14,13 @@ interface ApiProducto {
     @FormUrlEncoded
     @POST("producto-insertar.php")
     fun insertarProducto(
-        @Field("idVendedor") idVendedor: Int,
+        @Field("idTienda") idTienda: Int,
         @Field("nombre") nombre: String,
         @Field("descripcion") descripcion: String,
         @Field("precio") precio: Float,
         @Field("imagen") imagen: ByteArray,
         @Field("disponibilidad") disponibilidad: Boolean,
-        @Field("tiempoEstimado") tiempoEstimado: String
+        @Field("tiempoEstimado") tiempoEstimado: Int
     ): Call<JsonArray>
 
     /**
@@ -44,7 +44,7 @@ interface ApiProducto {
         @Field("precio") precio: Float,
         @Field("imagen") imagen: ByteArray,
         @Field("disponibilidad") disponibilidad: Boolean,
-        @Field("tiempoEstimado") tiempoEstimado: String
+        @Field("tiempoEstimado") tiempoEstimado: Int
     ): Call<JsonArray>
 
     /**
@@ -56,9 +56,11 @@ interface ApiProducto {
         @Field("idTienda") idTienda: Int
     ): Call<JsonArray>
 
-    //todo(revisar que onda con que hay dos metodos de consultar)
-    /**
-     *
-     */
+    @FormUrlEncoded
+    @POST("producto-cambiar-disponibilidad.php")
+    fun cambiarDisponibilidadProducto(
+        @Field("idProducto") idProducto:Int
+    ): Call<JsonArray>
+
 
 }
