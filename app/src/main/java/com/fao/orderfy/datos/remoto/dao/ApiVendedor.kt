@@ -44,15 +44,5 @@ interface ApiVendedor {
         @Field("idVendedor") idVendedor: Int
     ): Call<JsonArray>
 
-    /**
-     * Insertar un nuevo registro de vendedor, primero se tiene que haber creado la tienda
-     */
-    @FormUrlEncoded
-    @POST("vendedor-insertar.php")
-    fun insertarVendedor(
-        @Field("nombreUsuario") nombreUsuario: String,
-        @Field("pwd") pwd: String,
-        @Field("idTienda") idTienda: Int
-    ): Call<JsonArray>
 
 }

@@ -28,27 +28,6 @@ interface ApiAdministrador {
     ): Call<JsonArray>
 
     /**
-     * Eliminar administrador de registro
-     */
-    @FormUrlEncoded
-    @POST("admin-eliminar.php")
-    fun eliminarAdministrador(
-        @Field("idAdministrador") idAdministrador: Int
-    ): Call<JsonArray>
-
-    /**
-     * Insertar nuevo registro de administrador
-     */
-    @FormUrlEncoded
-    @POST("admin-insertar.php")
-    fun insertarAdministrador(
-        @Field("nombre") nombre: String,
-        @Field("apellido") apellido: String,
-        @Field("nombreUsuario") nombreUsuario: String,
-        @Field("pwd") pwd: String
-    ): Call<JsonArray>
-
-    /**
      * Autenticar usuario de tipo administrador al sistema
      */
     @FormUrlEncoded

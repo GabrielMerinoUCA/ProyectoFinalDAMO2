@@ -56,6 +56,9 @@ interface ApiProducto {
         @Field("idTienda") idTienda: Int
     ): Call<JsonArray>
 
+    /**
+     * Cambiar las disponibilidad del producto al valor opuesto del valor actual.
+     */
     @FormUrlEncoded
     @POST("producto-cambiar-disponibilidad.php")
     fun cambiarDisponibilidadProducto(

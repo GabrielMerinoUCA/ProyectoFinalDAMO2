@@ -45,16 +45,5 @@ interface ApiTienda {
         @Field("idTienda") idTienda: Int
     ): Call<JsonArray>
 
-    /**
-     * Insertar nueva tienda al registro
-     */
-    @FormUrlEncoded
-    @POST("tienda-insertar.php")
-    fun insertarTienda(
-        @Field("nombre") nombre: String,
-        @Field("horaApertura") horaApertura: String,
-        @Field("horaCierre") horaCierre: String,
-        @Field("logo") logo: ByteArray
-    ): Call<JsonArray>
 
 }
