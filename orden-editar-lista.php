@@ -2,9 +2,9 @@
 
 require_once 'conexion.php';
 
-$idAdministrador = $_POST['idAdministrador'];
+$idOrden = $_POST['idOrden'];
 
-$q = "DELETE FROM administrador WHERE idAdministrador = '$idAdministrador'";
+$q = "UPDATE orden SET estado = '1' WHERE idOrden = '$idOrden'";
 $query = mysqli_query($con, $q);
 
 if($query == true){

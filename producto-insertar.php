@@ -6,7 +6,6 @@ $nombre = $_POST['nombre'];
 $descripcion = $_POST['descripcion'];
 $precio = $_POST['precio'];
 $imagen = $_POST['imagen'];
-$disponibilidad = $_POST['disponibilidad'];
 $tiempoEstimado = $_POST['tiempoEstimado'];
 
 //Obtener el idTienda del vendedor
@@ -20,7 +19,7 @@ while($row = $query->fetch_array()){
 
 //Insertar el producto en la base de datos
 
-$q = "INSERT INTO producto (idTienda, nombre, descripcion, precio, imagen, disponibilidad, tiempoEstimado) VALUES ('$idTienda', '$nombre', '$descripcion', '$precio', '$imagen', '$disponibilidad', '$tiempoEstimado')";
+$q = "INSERT INTO producto (idTienda, nombre, descripcion, precio, imagen, disponibilidad, tiempoEstimado) VALUES ('$idTienda', '$nombre', '$descripcion', '$precio', '$imagen', 1 , '$tiempoEstimado')";
 
 $query = mysqli_query($con, $q);
 
