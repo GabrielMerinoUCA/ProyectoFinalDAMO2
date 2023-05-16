@@ -1,9 +1,19 @@
 package com.fao.orderfy.datos.Entidades
 
-class Administrador(
-    var apellido: String,
-    var idCliente: Int,
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "administrador")
+data class Administrador(
+    @PrimaryKey(autoGenerate = false)
+    var idAdministrador: Int,
+    @ColumnInfo(name = "nombre")
     var nombre: String,
+    @ColumnInfo(name = "apellido")
+    var apellido: String,
+    @ColumnInfo(name = "nombreUsuario")
     var nombreUsuario: String,
-    var pwd: String,
+    @ColumnInfo(name = "pwd")
+    var pwd: String
 )
