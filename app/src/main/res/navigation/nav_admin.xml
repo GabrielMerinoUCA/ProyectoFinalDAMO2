@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_admin">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_admin"
+    app:startDestination="@id/administradorHomeFragment">
 
+    <fragment
+        android:id="@+id/administradorHomeFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.AdministradorHomeFragment"
+        android:label="fragment_administrador_home"
+        tools:layout="@layout/fragment_administrador_home" >
+        <action
+            android:id="@+id/action_administradorHomeFragment_to_administradorVistaUsuarioFragment"
+            app:destination="@id/administradorVistaUsuarioFragment" />
+        <action
+            android:id="@+id/action_administradorHomeFragment_to_administradorVistaSolucitudesFragment"
+            app:destination="@id/administradorVistaSolucitudesFragment" />
+        <action
+            android:id="@+id/action_administradorHomeFragment_to_administradorVistaSolicitudEspFragment"
+            app:destination="@id/administradorVistaSolicitudEspFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/administradorVistaUsuarioFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.AdministradorVistaUsuarioFragment"
+        android:label="fragment_administrador_vista_usuario"
+        tools:layout="@layout/fragment_administrador_vista_usuario" />
+    <fragment
+        android:id="@+id/administradorVistaSolucitudesFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.AdministradorVistaSolucitudesFragment"
+        android:label="fragment_administrador_vista_solucitudes"
+        tools:layout="@layout/fragment_administrador_vista_solucitudes" >
+        <action
+            android:id="@+id/action_administradorVistaSolucitudesFragment_to_administradorVistaSolicitudEspFragment"
+            app:destination="@id/administradorVistaSolicitudEspFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/administradorVistaSolicitudEspFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.AdministradorVistaSolicitudEspFragment"
+        android:label="fragment_administrador_vista_solicitud_esp"
+        tools:layout="@layout/fragment_administrador_vista_solicitud_esp" />
 </navigation>
