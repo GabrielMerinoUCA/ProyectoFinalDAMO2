@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         val repositorioAdministrador = RepositorioAdministrador()
         repositorioAdministrador.consultarAdministradorRemoto(object : MainListener{
             override fun onSuccess(response: JsonArray) {
-                binding.tvPrueba.text = ""
+                binding.tvPrueba.text = response.toString()
             }
 
             override fun onFailure(error: String) {
