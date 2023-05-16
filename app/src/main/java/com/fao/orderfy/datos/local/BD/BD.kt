@@ -6,10 +6,10 @@ import androidx.room.Database
 import androidx.room.Room
 
 // TODO: PONER ENTIDADES QUE SE DEBEN DE INCLUIR EN BD
-//@Database(, version = 1, exportSchema = false)
+@Database(, version = 1, exportSchema = false)
 abstract class BD: RoomDatabase() {
     // TODO: PONER TODOS LOS DAOS PARA BD LOCAL
-    //abstract fun daoUser(): DaoUser //quitar, obviamente
+    abstract fun daoUser(): DaoUser //quitar, obviamente
 
     /* SINGLETON */
     companion object{
