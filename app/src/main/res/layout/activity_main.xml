@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".presentacion.actividades.MainActivity">
 
+    <TextView
+        android:id="@+id/tvPrueba"
+        android:textSize="25sp"
+        tools:text="aaaaa"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
