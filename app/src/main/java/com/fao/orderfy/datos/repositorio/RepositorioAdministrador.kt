@@ -16,17 +16,18 @@ class RepositorioAdministrador {
     //////////////////////////////////////////////////
     //////////  SECCCION DE ACCESO REMOTO   //////////
     //////////////////////////////////////////////////
-    fun consultarAdministradorRemoto(listener: MainListener) {
+
+    fun editarAdministradorRemoto(listener: MainListener, administrador: Administrador) {
         val api: ApiAdministrador = RetrofitService.getApi(ApiAdministrador::class.java)
-        val service = api.consultarAdministrador()
+        val service = api.editarAdministrador(
+            administrador.idAdministrador,
+            administrador.nombre,
+            administrador.apellido,
+            administrador.nombreUsuario,
+            administrador.pwd
+        )
         requestMethods.request(service, listener)
     }
 
-    fun editarAdministradorRemoto(listener: MainListener, administrador: Administrador){
-        val api: ApiAdministrador = RetrofitService.getApi(ApiAdministrador::class.java)
-        val service = api.editarAdministrador(administrador)
-        requestMethods.request(service, listener)
-    }
-
-
+    // no lleva local
 }

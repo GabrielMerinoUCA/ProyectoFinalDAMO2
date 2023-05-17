@@ -25,7 +25,7 @@ data class Producto(
     var nombre: String,
 
     @ColumnInfo(name = "precio")
-    var precio: Double,
+    var precio: Float,
 
     @ColumnInfo(name = "imagen")
     var imagen: ByteArray,
@@ -37,7 +37,7 @@ data class Producto(
     var disponibilidad: Boolean,
 
     @ColumnInfo(name = "tiempoEstimado")
-    var tiempoEstimado: Long,
+    var tiempoEstimado: Int,
 
     var idTienda: Int
 )

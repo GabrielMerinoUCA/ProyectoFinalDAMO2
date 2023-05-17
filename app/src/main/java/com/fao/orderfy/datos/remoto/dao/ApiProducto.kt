@@ -19,7 +19,6 @@ interface ApiProducto {
         @Field("descripcion") descripcion: String,
         @Field("precio") precio: Float,
         @Field("imagen") imagen: ByteArray,
-        @Field("disponibilidad") disponibilidad: Boolean,
         @Field("tiempoEstimado") tiempoEstimado: Int
     ): Call<JsonArray>
 

@@ -15,10 +15,15 @@ class RequestMethods {
                     if(body != null){
                         listener.onSuccess(body)
                         Log.w("RequestMethods: ", "Todo en orden")
+                    }else{
+                        listener.onFailure("No se retorno nada!")
                     }
+                }else{
+                    listener.onFailure("Error en la respuesta!")
                 }
             }
             override fun onFailure(call: Call<JsonArray>, t: Throwable) {
+                listener.onFailure("Error al procesar respuesta o crear peticion")
                 t.printStackTrace()
             }
         })

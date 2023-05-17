@@ -11,8 +11,8 @@ interface ApiOrden {
      * Consultar todas las ordenes del cliente, ordenadas por el estado de manera ascendiente
      */
     @FormUrlEncoded
-    @POST("orden-consultar.php")
-    fun consultarOrden(
+    @POST("orden-consultar-cliente.php")
+    fun consultarOrdenCliente(
         @Field("idCliente") idCliente:Int
     ): Call<JsonArray>
 
@@ -22,7 +22,7 @@ interface ApiOrden {
      */
     @FormUrlEncoded
     @POST("orden-consultar-tienda-pendiente.php")
-    fun consultarOrdenPendieteTienda(
+    fun consultarOrdenPendienteTienda(
         @Field("idTienda") idTienda: Int
     ): Call<JsonArray>
 

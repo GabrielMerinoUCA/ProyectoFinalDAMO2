@@ -8,11 +8,6 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiAdministrador {
-    /**
-     * Consultar registro de administradores
-     */
-    @GET("admin-consultar.php")
-    fun consultarAdministrador(): Call<JsonArray>
 
     /**
      * Editar Administrador especifico del registro
@@ -23,16 +18,6 @@ interface ApiAdministrador {
         @Field("idAdministrador") idAdministrador: Int,
         @Field("nombre") nombre: String,
         @Field("apellido") apellido: String,
-        @Field("nombreUsuario") nombreUsuario: String,
-        @Field("pwd") pwd: String
-    ): Call<JsonArray>
-
-    /**
-     * Autenticar usuario de tipo administrador al sistema
-     */
-    @FormUrlEncoded
-    @POST("admin-autenticacion.php")
-    fun autenticarAdministrador(
         @Field("nombreUsuario") nombreUsuario: String,
         @Field("pwd") pwd: String
     ): Call<JsonArray>
