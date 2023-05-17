@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_vendedor">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_vendedor"
+    app:startDestination="@id/vendedorHomeFragment">
 
+    <fragment
+        android:id="@+id/vendedorHomeFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.VendedorHomeFragment"
+        android:label="fragment_vendedor_home"
+        tools:layout="@layout/fragment_vendedor_home" >
+        <action
+            android:id="@+id/action_vendedorHomeFragment_to_vendedorLocalFragment"
+            app:destination="@id/vendedorLocalFragment" />
+        <action
+            android:id="@+id/action_vendedorHomeFragment_to_vendedorOrdenEspFragment"
+            app:destination="@id/vendedorOrdenEspFragment" />
+        <action
+            android:id="@+id/action_vendedorHomeFragment_to_vendedorOrdenesFragment"
+            app:destination="@id/vendedorOrdenesFragment" />
+        <action
+            android:id="@+id/action_vendedorHomeFragment_to_vendedorMenuFragment"
+            app:destination="@id/vendedorMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vendedorOrdenEspFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.VendedorOrdenEspFragment"
+        android:label="fragment_vendedor_orden_esp"
+        tools:layout="@layout/fragment_vendedor_orden_esp" />
+    <fragment
+        android:id="@+id/vendedorOrdenesFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.VendedorOrdenesFragment"
+        android:label="fragment_vendedor_ordenes"
+        tools:layout="@layout/fragment_vendedor_ordenes" >
+        <action
+            android:id="@+id/action_vendedorOrdenesFragment_to_vendedorOrdenEspFragment"
+            app:destination="@id/vendedorOrdenEspFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vendedorMenuFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.VendedorMenuFragment"
+        android:label="fragment_vendedor_menu"
+        tools:layout="@layout/fragment_vendedor_menu" >
+        <action
+            android:id="@+id/action_vendedorMenuFragment_to_vendedorAgregarProdFragment"
+            app:destination="@id/vendedorAgregarProdFragment" />
+        <action
+            android:id="@+id/action_vendedorMenuFragment_to_vendedorEditarProdFragment"
+            app:destination="@id/vendedorEditarProdFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vendedorLocalFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.VendedorLocalFragment"
+        android:label="fragment_vendedor_local"
+        tools:layout="@layout/fragment_vendedor_local" />
+    <fragment
+        android:id="@+id/vendedorAgregarProdFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.VendedorAgregarProdFragment"
+        android:label="fragment_vendedor_agregar_prod"
+        tools:layout="@layout/fragment_vendedor_agregar_prod" />
+    <fragment
+        android:id="@+id/vendedorEditarProdFragment"
+        android:name="com.fao.orderfy.presentacion.fragmentos.VendedorEditarProdFragment"
+        android:label="fragment_vendedor_editar_prod"
+        tools:layout="@layout/fragment_vendedor_editar_prod" />
 </navigation>
