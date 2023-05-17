@@ -10,6 +10,7 @@ import androidx.navigation.Navigation
 import com.fao.orderfy.R
 import com.fao.orderfy.databinding.FragmentIniciarSesionBinding
 import com.fao.orderfy.presentacion.actividades.ClienteActivity
+import com.fao.orderfy.presentacion.actividades.VendedorActivity
 
 
 class IniciarSesionFragment : Fragment() {
