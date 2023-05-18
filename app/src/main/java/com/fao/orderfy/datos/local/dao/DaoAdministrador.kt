@@ -9,15 +9,16 @@ import com.fao.orderfy.datos.Entidades.Administrador
 
 @Dao
 interface DaoAdministrador {
-    @Query("SELECT * FROM administrador")
-    suspend fun obtenerAdministrador(): MutableList<Administrador>
 
-    @Insert
-    suspend fun agregarAdministrador(administrador: Administrador)
+    @Query("Update administrador set  nombre=:nombre, " +
+            "apellido=:apellido, nombreUsuario=:nombreUsuario, pwd=:pwd WHERE idAdministrador=:idAdministrador")
+    suspend fun actualizarAdministrador(
+        idAdministrador: Int,
+        nombre: String,
+        apellido: String,
+        nombreUsuario: String,
+        pwd: String,
+    )
 
-    @Update
-    suspend fun actualizarAdministrador(administrador: Administrador)
 
-    @Delete
-    suspend fun eliminarAdministrador(administrador: Administrador)
 }

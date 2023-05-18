@@ -21,13 +21,13 @@ class RepositorioVendedor {
 
     fun editarVendedorRemoto(listener: MainListener, vendedor: Vendedor) {
         val api: ApiVendedor = RetrofitService.getApi(ApiVendedor::class.java)
-        val service = api.editarVendedor(vendedor.idVendor, vendedor.nombreUsuario, vendedor.pwd)
+        val service = api.editarVendedor(vendedor.idVendedor, vendedor.nombreUsuario, vendedor.pwd)
         requestMethods.request(service, listener)
     }
 
     fun eliminarVendedorRemoto(listener: MainListener, vendedor: Vendedor) {
         val api: ApiVendedor = RetrofitService.getApi(ApiVendedor::class.java)
-        val service = api.eliminarVendedor(vendedor.idVendor)
+        val service = api.eliminarVendedor(vendedor.idVendedor)
         requestMethods.request(service, listener)
     }
 

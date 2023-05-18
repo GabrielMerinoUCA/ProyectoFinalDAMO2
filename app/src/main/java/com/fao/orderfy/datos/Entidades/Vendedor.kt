@@ -17,7 +17,7 @@ data class Vendedor(
     var idTienda: Int,
 
     @PrimaryKey(autoGenerate = false)
-    var idVendor: Int,
+    var idVendedor: Int,
 
     @ColumnInfo(name = "nombreUsuario")
     var nombreUsuario: String,

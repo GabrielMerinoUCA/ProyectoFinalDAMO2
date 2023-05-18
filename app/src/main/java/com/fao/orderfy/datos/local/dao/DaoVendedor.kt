@@ -12,12 +12,12 @@ interface DaoVendedor {
     @Query("SELECT * FROM vendedor")
     suspend fun obtenerVendedores(): MutableList<Vendedor>
 
-    @Insert
-    suspend fun agregarVendedor(vendedor: Vendedor)
+    @Query("UPDATE vendedor SET nombreUsuario = :nombreUsuario, pwd = :pwd WHERE idVendedor = :idVendedor")
+    suspend fun updateVendedor(nombreUsuario: String, pwd: String, idVendedor: String)
 
-    @Update
-    suspend fun actualizarVendedor(vendedor: Vendedor)
 
-    @Delete
-    suspend fun eliminarVendedor(vendedor: Vendedor)
+    @Query("DELETE FROM vendedor WHERE idVendedor = :idVendedor")
+    suspend fun deleteVendedor(idVendedor: String)
+
+    // TODO: El autentication que no se como se hace xd
 }
