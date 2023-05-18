@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitService {
     private val api=
         Retrofit.Builder()
-            .baseUrl("http://192.168.1.23/DAMO2Final/")
+            .baseUrl("https://damo2-api.herokuapp.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
