@@ -1,0 +1,5 @@
+mysql://b15343bed58c83:0629ffa2@us-cdbr-east-06.cleardb.net/heroku_856dfefc0b0fdac?reconnect=true
+
+un: b15343bed58c83
+pw: 0629ffa2
+host: us-cdbr-east-06.cleardb.net
