@@ -4,7 +4,7 @@ require_once 'conexion.php';
 
 $idTienda = $_POST['idTienda'];
 
-$q = "SELECT * FROM orden WHERE idProducto IN (SELECT idProducto FROM producto WHERE idTienda = '$idTienda')";
+$q = "SELECT * FROM orden WHERE idProducto IN (SELECT idProducto FROM producto WHERE idTienda = '$idTienda') AND estado = '1'";
 $query = mysqli_query($con, $q);
 
 while($row = $query->fetch_array()){
