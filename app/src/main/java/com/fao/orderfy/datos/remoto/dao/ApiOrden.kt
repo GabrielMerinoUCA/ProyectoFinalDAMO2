@@ -7,31 +7,40 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 interface ApiOrden {
+
     /**
-     * Consultar todas las ordenes del cliente, ordenadas por el estado de manera ascendiente
+     * Consultar todas las ordenes de un Cliente, de forma acendente para estado.
      */
     @FormUrlEncoded
     @POST("orden-consultar-cliente.php")
     fun consultarOrdenCliente(
-        @Field("idCliente") idCliente:Int
+        @Field("idCliente") idCliente: Int
     ): Call<JsonArray>
 
     /**
-     * Consultar todas las ordenes hacia varios productos de una tienda en especifico con el estado
-     * pendiente
+     * Consultar ordenes de una tienda (para Vendedor) que hayan sido entregadas
      */
     @FormUrlEncoded
-    @POST("orden-consultar-tienda-pendiente.php")
-    fun consultarOrdenPendienteTienda(
+    @POST("orden-consultar-tienda-entregada.php")
+    fun consultarOrdenTiendaEntregada(
         @Field("idTienda") idTienda: Int
     ): Call<JsonArray>
 
     /**
-     * Consultar todas las ordenes hacia varios productos de una tienda en especifico
+     * Consultar ordenes de una tienda (para Vendedor) que esten listas
      */
     @FormUrlEncoded
-    @POST("orden-consultar-tienda.php")
-    fun consultarOrdenTienda(
+    @POST("orden-consultar-tienda-lista.php")
+    fun consultarOrdenTiendaLista(
+        @Field("idTienda") idTienda: Int
+    ): Call<JsonArray>
+
+    /**
+     * Consultar ordenes de una tienda (para Vendedor) que esten pendientes
+     */
+    @FormUrlEncoded
+    @POST("orden-consultar-tienda-pendiente.php")
+    fun consultarOrdenTiendaPendiente(
         @Field("idTienda") idTienda: Int
     ): Call<JsonArray>
 

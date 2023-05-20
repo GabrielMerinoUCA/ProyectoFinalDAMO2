@@ -4,13 +4,16 @@ import android.annotation.SuppressLint
 import com.fao.orderfy.datos.Entidades.Cliente
 import com.fao.orderfy.datos.Entidades.Orden
 import com.fao.orderfy.datos.Entidades.Tienda
+import com.fao.orderfy.datos.local.dao.DaoOrden
 import com.fao.orderfy.datos.remoto.api.RetrofitService
 import com.fao.orderfy.datos.remoto.dao.ApiOrden
 import com.fao.orderfy.datos.utils.MainListener
 import com.fao.orderfy.datos.utils.RequestMethods
+import com.google.gson.Gson
+import com.google.gson.JsonParser
 import java.text.SimpleDateFormat
 
-class RepositorioOrden {
+class RepositorioOrden(val daoOrden: DaoOrden) {
     private val requestMethods: RequestMethods = RequestMethods()
 
     //////////////////////////////////////////////////
@@ -23,24 +26,35 @@ class RepositorioOrden {
         requestMethods.request(service, listener)
     }
 
-    fun consultarOrdenPendienteTiendaRemoto(listener: MainListener, tienda: Tienda) {
+    // SOLO REMOTO
+    fun consultarOrdenTiendaEntregadaRemoto(listener: MainListener, tienda: Tienda) {
         val api: ApiOrden = RetrofitService.getApi(ApiOrden::class.java)
-        val service = api.consultarOrdenPendienteTienda(tienda.idTienda)
+        val service = api.consultarOrdenTiendaEntregada(tienda.idTienda)
         requestMethods.request(service, listener)
     }
 
-    fun consultarOrdenTiendaRemoto(listener: MainListener, tienda: Tienda) {
+    // SOLO REMOTO
+    fun consultarOrdenTiendaListaRemoto(listener: MainListener, tienda: Tienda) {
         val api: ApiOrden = RetrofitService.getApi(ApiOrden::class.java)
-        val service = api.consultarOrdenTienda(tienda.idTienda)
+        val service = api.consultarOrdenTiendaLista(tienda.idTienda)
         requestMethods.request(service, listener)
     }
 
+    // SOLO REMOTO
+    fun consultarOrdenTiendaPendienteRemoto(listener: MainListener, tienda: Tienda) {
+        val api: ApiOrden = RetrofitService.getApi(ApiOrden::class.java)
+        val service = api.consultarOrdenTiendaPendiente(tienda.idTienda)
+        requestMethods.request(service, listener)
+    }
+
+    // SOLO REMOTO
     fun cambiarEstadoOrdenListaRemoto(listener: MainListener, orden: Orden) {
         val api: ApiOrden = RetrofitService.getApi(ApiOrden::class.java)
         val service = api.cambiarEstadoOrdenLista(orden.idOrden)
         requestMethods.request(service, listener)
     }
 
+    // SOLO REMOTO
     @SuppressLint("SimpleDateFormat")
     fun cambiarEstadoOrdenReclamadaRemoto(listener: MainListener, orden: Orden) {
         val api: ApiOrden = RetrofitService.getApi(ApiOrden::class.java)
@@ -49,11 +63,13 @@ class RepositorioOrden {
         requestMethods.request(service, listener)
     }
 
+    // SOLO REMOTO
     @SuppressLint("SimpleDateFormat")
     fun insertarOrdenRemoto(listener: MainListener, orden: Orden) {
         val api: ApiOrden = RetrofitService.getApi(ApiOrden::class.java)
         val horaPedido = SimpleDateFormat("HH:mm:ss").format(orden.horaPedido)
-        val service = api.insertarOrden(horaPedido, orden.idCliente, orden.idProducto, orden.cantidad)
+        val service =
+            api.insertarOrden(horaPedido, orden.idCliente, orden.idProducto, orden.cantidad)
         requestMethods.request(service, listener)
     }
 
@@ -61,4 +77,23 @@ class RepositorioOrden {
     //////////////////////////////////////////////////
     //////////  SECCCION DE ACCESO LOCAL    //////////
     //////////////////////////////////////////////////
+
+    suspend fun consultarOrdenClienteLocal(listener: MainListener, cliente: Cliente) {
+        try {
+            val gson = Gson()
+            val orden = daoOrden.consultarOrdenCliente(cliente.idCliente)
+            val jsonString = gson.toJson(orden)
+            val jsonParser = JsonParser()
+            val jsonArray = jsonParser.parse(jsonString).asJsonArray
+            if (jsonArray != null){
+                listener.onSuccess(jsonArray)
+            }else{
+                listener.onFailure("No se a encontrado el registro!")
+            }
+        }catch (e: Exception){
+            listener.onFailure("Error inesperado...")
+            e.printStackTrace()
+        }
+    }
+
 }

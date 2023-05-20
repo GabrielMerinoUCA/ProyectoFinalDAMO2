@@ -13,7 +13,16 @@ interface DaoRegistro {
     suspend fun consultarRegistro(): MutableList<Registro>
 
     @Query("INSERT INTO registro(nombre, apellido, nombreUsuario, nombreTienda, horaApertura, horaCierre, pwd, estado) VALUES (:nombre, :apellido, :nombreUsuario, :nombreTienda, :horaApertura, :horaCierre, :pwd, :estado)")
-    suspend fun insertRegistro(nombre: String, apellido: String, nombreUsuario: String, nombreTienda: String, horaApertura: String, horaCierre: String, pwd: String, estado: Int)
+    suspend fun insertRegistro(
+        nombre: String,
+        apellido: String,
+        nombreUsuario: String,
+        nombreTienda: String,
+        horaApertura: String,
+        horaCierre: String,
+        pwd: String,
+        estado: Int
+    )
 
 
     @Query("UPDATE registro SET estado = 1 WHERE idRegistro = :idRegistro")

@@ -9,9 +9,6 @@ import com.fao.orderfy.datos.Entidades.Producto
 
 @Dao
 interface DaoProducto {
-    @Query("SELECT * FROM producto")
-    suspend fun obtenerProductos(): MutableList<Producto>
-
     @Query("INSERT INTO producto (idTienda, nombre, descripcion, precio, imagen, disponibilidad, tiempoEstimado) SELECT idTienda, :nombre, :descripcion, :precio, :imagen, 1, :tiempoEstimado FROM vendedor WHERE idVendedor = :idVendedor")
     suspend fun insertarProducto(idVendedor: Int, nombre: String, descripcion: String, precio: Double, imagen: String, tiempoEstimado: String)
 

@@ -2,12 +2,15 @@ package com.fao.orderfy.datos.repositorio
 
 import com.fao.orderfy.datos.Entidades.Producto
 import com.fao.orderfy.datos.Entidades.Tienda
+import com.fao.orderfy.datos.local.dao.DaoProducto
 import com.fao.orderfy.datos.remoto.api.RetrofitService
 import com.fao.orderfy.datos.remoto.dao.ApiProducto
 import com.fao.orderfy.datos.utils.MainListener
 import com.fao.orderfy.datos.utils.RequestMethods
+import com.google.gson.Gson
+import com.google.gson.JsonParser
 
-class RepositorioProducto {
+class RepositorioProducto(val daoProducto: DaoProducto) {
     private val requestMethods: RequestMethods = RequestMethods()
 
     //////////////////////////////////////////////////
@@ -20,6 +23,7 @@ class RepositorioProducto {
         requestMethods.request(service, listener)
     }
 
+    // SOLO REMOTO
     fun editarProductoRemoto(listener: MainListener, producto: Producto) {
         val api: ApiProducto = RetrofitService.getApi(ApiProducto::class.java)
         val service = api.editarProducto(
@@ -34,12 +38,14 @@ class RepositorioProducto {
         requestMethods.request(service, listener)
     }
 
+    // SOLO REMOTO
     fun eliminarProductoRemoto(listener: MainListener, producto: Producto) {
         val api: ApiProducto = RetrofitService.getApi(ApiProducto::class.java)
         val service = api.eliminarProducto(producto.idProducto)
         requestMethods.request(service, listener)
     }
 
+    // SOLO REMOTO
     fun insertarProductoRemoto(listener: MainListener, producto: Producto) {
         val api: ApiProducto = RetrofitService.getApi(ApiProducto::class.java)
         val service = api.insertarProducto(
@@ -53,6 +59,7 @@ class RepositorioProducto {
         requestMethods.request(service, listener)
     }
 
+    // SOLO REMOTO
     fun cambiarDisponibilidadProductoRemoto(listener: MainListener, producto: Producto) {
         val api: ApiProducto = RetrofitService.getApi(ApiProducto::class.java)
         val service = api.cambiarDisponibilidadProducto(producto.idProducto)
@@ -63,4 +70,21 @@ class RepositorioProducto {
     //////////  SECCCION DE ACCESO LOCAL    //////////
     //////////////////////////////////////////////////
 
+    suspend fun consultarProductoLocal(listener: MainListener, tienda: Tienda) {
+        try {
+            val gson = Gson()
+            val producto = daoProducto.consultarProductosTienda(tienda.idTienda)
+            val jsonString = gson.toJson(producto)
+            val jsonParser = JsonParser()
+            val jsonArray = jsonParser.parse(jsonString).asJsonArray
+            if (jsonArray != null){
+                listener.onSuccess(jsonArray)
+            }else{
+                listener.onFailure("No se a encontrado el registro!")
+            }
+        }catch (e: Exception){
+            listener.onFailure("Error inesperado...")
+            e.printStackTrace()
+        }
+    }
 }
