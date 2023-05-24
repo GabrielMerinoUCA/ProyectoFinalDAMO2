@@ -8,29 +8,23 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.fao.orderfy.R
-import com.fao.orderfy.databinding.FragmentCrearCuentaBinding
+import com.fao.orderfy.databinding.FragmentFRegistroVendedorBinding
 
 
-class CrearCuentaFragment : Fragment() {
-    private lateinit var fbinding: FragmentCrearCuentaBinding
-
+class FRegistroVendedorFragment : Fragment() {
+    private lateinit var fbinding: FragmentFRegistroVendedorBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        fbinding = FragmentCrearCuentaBinding.inflate(layoutInflater)
+        fbinding = FragmentFRegistroVendedorBinding.inflate(layoutInflater)
         iniciar()
         return fbinding.root
     }
 
     private fun iniciar() {
-        fbinding.tvIniciarSesionC.setOnClickListener {
-            Navigation.findNavController(fbinding.root)
-                .navigate(R.id.action_crearCuentaFragment_to_seleccionUsuarioLoginFragment)
-
-        }
         fbinding.btnContinuar.setOnClickListener {
             if (validarEditText() == true) {
                 Toast.makeText(activity, "Todos los campos son requeridos", Toast.LENGTH_LONG)
@@ -39,17 +33,17 @@ class CrearCuentaFragment : Fragment() {
                 var nombre = fbinding.etNombre.text.toString()
                 var apellido = fbinding.etApellido.text.toString()
                 Navigation.findNavController(fbinding.root).navigate(
-                    R.id.action_crearCuentaFragment_to_continuarCrearCuentaFragment,
+                    R.id.action_FRegistroVendedorFragment_to_registroVendedorFragment,
                     Bundle().apply {
-                        putString("nombreCliente", nombre)
-                        putString("apellidoCliente", apellido)
+                        putString("nombre", nombre)
+                        putString("apellido", apellido)
                     })
                 limpiarCampos()
             }
-
         }
-
-
+        fbinding.tvIniciarSesionC.setOnClickListener {
+            Navigation.findNavController(fbinding.root).navigate(R.id.action_FRegistroVendedorFragment_to_seleccionUsuarioLoginFragment)
+        }
     }
 
     private fun validarEditText(): Boolean {
@@ -68,7 +62,6 @@ class CrearCuentaFragment : Fragment() {
         fbinding.etApellido.setText("")
 
     }
-
 
 
 }

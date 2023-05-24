@@ -10,26 +10,26 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.fao.orderfy.R
-import com.fao.orderfy.databinding.FragmentRegistroBinding
+import com.fao.orderfy.databinding.FragmentSeleccionUsuarioLoginBinding
 
-class RegistroFragment : Fragment() {
-    private lateinit var fbinding: FragmentRegistroBinding
+
+class SeleccionUsuarioLoginFragment : Fragment() {
+    private lateinit var fbinding: FragmentSeleccionUsuarioLoginBinding
     private var selectedButton: Button? = null
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        fbinding = FragmentRegistroBinding.inflate(layoutInflater)
+        fbinding = FragmentSeleccionUsuarioLoginBinding.inflate(layoutInflater)
         iniciar()
         return fbinding.root
     }
 
     private fun iniciar() {
         validarBotonSelecionado()
-        fbinding.tvIniciarSesionC.setOnClickListener {
-            Navigation.findNavController(fbinding.root).navigate(R.id.action_registroFragment_to_seleccionUsuarioLoginFragment)
+        fbinding.tvRegistrateC.setOnClickListener {
+            Navigation.findNavController(fbinding.root).navigate(R.id.action_seleccionUsuarioLoginFragment_to_registroFragment)
         }
     }
 
@@ -49,10 +49,10 @@ class RegistroFragment : Fragment() {
         fbinding.btnContinuar.setOnClickListener {
             if (selectedButton == fbinding.btnCliente) {
                 // Navega al fragmento para el botón 1
-                Navigation.findNavController(fbinding.root).navigate(R.id.action_registroFragment_to_crearCuentaFragment)
+                Navigation.findNavController(fbinding.root).navigate(R.id.action_seleccionUsuarioLoginFragment_to_iniciarSesionFragment)
 
             } else if (selectedButton == fbinding.btnVendedor) {
-                Navigation.findNavController(fbinding.root).navigate(R.id.action_registroFragment_to_FRegistroVendedorFragment)
+                Navigation.findNavController(fbinding.root).navigate(R.id.action_seleccionUsuarioLoginFragment_to_iniciarSesionVendedorFragment)
 
             } else {
                 // Ningún botón está seleccionado
@@ -68,5 +68,6 @@ class RegistroFragment : Fragment() {
             selectedButton = null
         }
     }
+
 
 }

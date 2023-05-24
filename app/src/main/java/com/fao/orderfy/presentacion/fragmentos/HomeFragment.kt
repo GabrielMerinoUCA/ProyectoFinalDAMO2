@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(fbinding.root).navigate(R.id.action_homeFragment_to_registroFragment)
         }
         fbinding.btnIniciarSesion.setOnClickListener {
-            Navigation.findNavController(fbinding.root).navigate(R.id.action_homeFragment_to_iniciarSesionFragment)
+            Navigation.findNavController(fbinding.root).navigate(R.id.action_homeFragment_to_seleccionUsuarioLoginFragment)
 
 
 
