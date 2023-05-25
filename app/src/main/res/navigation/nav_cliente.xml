@@ -79,7 +79,11 @@
         android:id="@+id/ordenRealizadaFragment"
         android:name="com.fao.orderfy.presentacion.fragmentos.OrdenRealizadaFragment"
         android:label="fragment_orden_realizada"
-        tools:layout="@layout/fragment_orden_realizada" />
+        tools:layout="@layout/fragment_orden_realizada" >
+        <action
+            android:id="@+id/action_ordenRealizadaFragment_to_ordenEnCursoFragment"
+            app:destination="@id/ordenEnCursoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/ordenEnCursoFragment"
         android:name="com.fao.orderfy.presentacion.fragmentos.OrdenEnCursoFragment"

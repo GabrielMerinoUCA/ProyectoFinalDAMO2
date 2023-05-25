@@ -56,7 +56,7 @@ class ClienteActivity : AppCompatActivity() {
         }
         binding.btnMisOrdenes.setOnClickListener {
             val navController = binding.fragmentContainerView2.findNavController()
-            navController.navigate(R.id.ordenFragment)
+            navController.navigate(R.id.misOrdenesFragment)
             binding.slidingPaneLayout.closePane()
             binding.slidingPaneLayout.visibility = View.INVISIBLE
         }
