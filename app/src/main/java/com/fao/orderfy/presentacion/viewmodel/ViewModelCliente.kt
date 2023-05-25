@@ -1,6 +1,7 @@
 package com.fao.orderfy.presentacion.viewmodel
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.fao.orderfy.datos.Entidades.Cliente
@@ -24,8 +25,8 @@ class ViewModelCliente(application: Application): AndroidViewModel(application) 
         }
     }
 
-    fun autenticarCliente(listener: MainListener, cliente: Cliente) {
-        if (RetrofitService.isServerReachable() != false) {
+    fun autenticarCliente(context: Context,listener: MainListener, cliente: Cliente) {
+        if (RetrofitService.isServerReachable(context)) {
             repositorio.autenticarClienteRemoto(listener, cliente)
         }else{
             viewModelScope.launch(Dispatchers.IO) {

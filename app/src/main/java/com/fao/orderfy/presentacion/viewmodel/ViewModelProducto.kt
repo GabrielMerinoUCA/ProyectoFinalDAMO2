@@ -1,6 +1,7 @@
 package com.fao.orderfy.presentacion.viewmodel
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.fao.orderfy.datos.Entidades.Producto
@@ -19,8 +20,8 @@ class ViewModelProducto(application: Application): AndroidViewModel(application)
         repositorio = RepositorioProducto(dao)
     }
 
-    fun consultarProducto(listener: MainListener, tienda: Tienda) {
-        if(RetrofitService.isServerReachable() != false) {
+    fun consultarProducto(context: Context, listener: MainListener, tienda: Tienda) {
+        if(RetrofitService.isServerReachable(context) != false) {
             repositorio.consultarProductoRemoto(listener, tienda)
         }else{
             viewModelScope.launch(Dispatchers.IO) {

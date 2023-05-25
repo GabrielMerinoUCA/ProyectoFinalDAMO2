@@ -1,5 +1,6 @@
 package com.fao.orderfy.datos.repositorio
 
+import android.util.Log
 import com.fao.orderfy.datos.Entidades.Cliente
 import com.fao.orderfy.datos.local.dao.DaoCliente
 import com.fao.orderfy.datos.remoto.api.RetrofitService
@@ -92,6 +93,7 @@ class RepositorioCliente(val daoCliente: DaoCliente) {
                 listener.onFailure("Credenciales incorrectas")
             }
         }catch (e: Exception){
+            Log.wtf("error", "error: "+e)
             listener.onFailure("Error inesperado...")
             e.printStackTrace()
         }

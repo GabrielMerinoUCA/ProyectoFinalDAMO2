@@ -1,6 +1,7 @@
 package com.fao.orderfy.presentacion.viewmodel
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.fao.orderfy.datos.Entidades.Cliente
@@ -20,8 +21,8 @@ class ViewModelOrden(application: Application): AndroidViewModel(application) {
         repositorio = RepositorioOrden(dao)
     }
 
-    fun consultarOrdenCliente(listener: MainListener, cliente: Cliente) {
-        if(RetrofitService.isServerReachable() != false){
+    fun consultarOrdenCliente(context: Context, listener: MainListener, cliente: Cliente) {
+        if(RetrofitService.isServerReachable(context) != false){
             repositorio.consultarOrdenClienteRemoto(listener, cliente)
         }else{
             viewModelScope.launch(Dispatchers.IO) {

@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.Navigation
 import com.fao.orderfy.R
 import com.fao.orderfy.databinding.FragmentHomeBinding
+import com.fao.orderfy.datos.remoto.api.RetrofitService
 
 
 class HomeFragment : Fragment() {
@@ -28,9 +30,15 @@ class HomeFragment : Fragment() {
 
     private fun iniciar() {
         fbinding.btnCrearCuenta.setOnClickListener {
-            Navigation.findNavController(fbinding.root).navigate(R.id.action_homeFragment_to_registroFragment)
+            if (RetrofitService.isServerReachable(requireContext())) {
+                Navigation.findNavController(fbinding.root).navigate(R.id.action_homeFragment_to_registroFragment)
+            } else {
+                Toast.makeText(activity, "No tiene conexion a internet", Toast.LENGTH_LONG).show()
+            }
+
         }
         fbinding.btnIniciarSesion.setOnClickListener {
+
             Navigation.findNavController(fbinding.root).navigate(R.id.action_homeFragment_to_seleccionUsuarioLoginFragment)
 
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.fao.orderfy.R
 import com.fao.orderfy.TimePickerFragment
@@ -16,6 +17,9 @@ import com.fao.orderfy.datos.local.BD.BD
 import com.fao.orderfy.datos.repositorio.RepositorioCliente
 import com.fao.orderfy.datos.repositorio.RepositorioRegistro
 import com.fao.orderfy.datos.utils.MainListener
+import com.fao.orderfy.presentacion.viewmodel.ViewModelCliente
+import com.fao.orderfy.presentacion.viewmodel.ViewModelRegistro
+import com.fao.orderfy.presentacion.viewmodel.ViewModelVendedor
 import com.google.gson.JsonArray
 import java.text.SimpleDateFormat
 import java.sql.Time
@@ -60,8 +64,8 @@ class ContinuarRegistroVendedorFragment : Fragment() {
         var horaApertura = convertStringToTime(fbinding.etHoraApertura.text.toString())
         var horaCierre = convertStringToTime(fbinding.etHoraCierre.text.toString())
         var registro = Registro(0, nombre, apellido, userName, nombreLocal, pwd, horaApertura!!, horaCierre!!, 0)
-        val repositorioRegistro = RepositorioRegistro()
-        repositorioRegistro.insertarRegistroRemoto(object : MainListener {
+        var viewModelRegistro = ViewModelProvider(this)[ViewModelRegistro::class.java]
+        viewModelRegistro.insertarRegistro(object : MainListener {
             override fun onSuccess(response: JsonArray) {
 
                 Toast.makeText(activity, "Registro Ingresado Correctamente", Toast.LENGTH_LONG)
