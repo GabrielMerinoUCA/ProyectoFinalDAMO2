@@ -12,16 +12,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.fao.orderfy.R
 import com.fao.orderfy.databinding.FragmentIniciarSesionVendedorBinding
-import com.fao.orderfy.datos.Entidades.Cliente
 import com.fao.orderfy.datos.Entidades.Vendedor
-import com.fao.orderfy.datos.local.BD.BD
-import com.fao.orderfy.datos.repositorio.RepositorioCliente
 import com.fao.orderfy.datos.utils.MainListener
-import com.fao.orderfy.presentacion.actividades.ClienteActivity
+import com.fao.orderfy.presentacion.actividades.AdminActivity
 import com.fao.orderfy.presentacion.actividades.VendedorActivity
-import com.fao.orderfy.presentacion.viewmodel.ViewModelCliente
 import com.fao.orderfy.presentacion.viewmodel.ViewModelVendedor
 import com.google.gson.JsonArray
+import com.google.gson.JsonElement
 
 
 class IniciarSesionVendedorFragment : Fragment() {
@@ -39,55 +36,63 @@ class IniciarSesionVendedorFragment : Fragment() {
 
     private fun iniciar() {
         fbinding.tvRegistrar.setOnClickListener {
-            Navigation.findNavController(fbinding.root).navigate(R.id.action_iniciarSesionVendedorFragment_to_registroFragment)
+            Navigation.findNavController(fbinding.root)
+                .navigate(R.id.action_iniciarSesionVendedorFragment_to_registroFragment)
         }
         fbinding.btnIniciarSesionC.setOnClickListener {
-            if(fbinding.etUser.text.toString() == "" || fbinding.etPWD.text.toString() == ""){
+            if (fbinding.etUser.text.toString() == "" || fbinding.etPWD.text.toString() == "") {
                 Toast.makeText(activity, "Todos los campos son requeridos", Toast.LENGTH_LONG)
                     .show()
-            }else{
+            } else {
                 validarLogin()
             }
         }
     }
 
+
     private fun validarLogin() {
 
         var userName = fbinding.etUser.text.toString()
         var pwd = fbinding.etPWD.text.toString()
-        var vendedor = Vendedor(0, 0,userName, pwd)
+        var vendedor = Vendedor(0, 0, userName, pwd)
 
         var viewModelVendedor = ViewModelProvider(this)[ViewModelVendedor::class.java]
-       viewModelVendedor.autenticarVendedor(object : MainListener {
+        viewModelVendedor.autenticarVendedor(object : MainListener {
             override fun onSuccess(response: JsonArray) {
                 val valor = validarJsonArray(response)
-                if (valor) {
+                if (valor.asBoolean) {
                     var intent = Intent(activity, VendedorActivity::class.java)
                     startActivity(intent)
-                } else {
-                    Toast.makeText(activity, "Usuario no encontrado", Toast.LENGTH_LONG)
-                        .show()
 
+                } else if (valor.asString == "admin-true") {
+                    var intent = Intent(activity, AdminActivity::class.java)
+                    startActivity(intent)
+
+                } else {
+                    Toast.makeText(
+                        activity,
+                        "Usuario no encontrado",
+                        Toast.LENGTH_LONG
+                    )
+                        .show()
                 }
 
             }
 
             override fun onFailure(error: String) {
-                Log.wtf("error", "error: "+error)
-                Toast.makeText(activity, "Error", Toast.LENGTH_LONG)
-                    .show()
+                Log.wtf("error", "error: " + error)
+                activity?.runOnUiThread {
+                    Toast.makeText(activity, error, Toast.LENGTH_LONG).show()
+                }
             }
 
         }, vendedor)
     }
 
-    fun validarJsonArray(jsonArray: JsonArray): Boolean {
-        if (jsonArray.size() == 1) {
-            val jsonObject = jsonArray.get(0).asJsonObject
-            val valor = jsonObject.get("response").asBoolean
-            return valor
-        }
-        return false
+    fun validarJsonArray(jsonArray: JsonArray): JsonElement {
+        val jsonObject = jsonArray.get(0).asJsonObject
+        return jsonObject.get("response")
+
     }
 
 

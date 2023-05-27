@@ -62,8 +62,13 @@ class RepositorioVendedor(val daoVendedor: DaoVendedor) {
                 listener.onFailure("No se encontro el registro!")
             }
         }catch (e: Exception) {
-            listener.onFailure("Error inesperado...")
-            e.printStackTrace()
+            if (daoVendedor.getCount() == 0){
+                listener.onFailure("No hay vendedores guardados actualmente. Espere a tener conexión a internet")
+                e.printStackTrace()
+            }else{
+                listener.onFailure("Error inesperado...")
+                e.printStackTrace()
+            }
         }
     }
 

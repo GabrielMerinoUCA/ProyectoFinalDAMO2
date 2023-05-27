@@ -13,8 +13,11 @@ import androidx.navigation.Navigation
 import com.fao.orderfy.R
 import com.fao.orderfy.databinding.FragmentIniciarSesionBinding
 import com.fao.orderfy.datos.Entidades.Cliente
+import com.fao.orderfy.datos.local.BD.BD
+import com.fao.orderfy.datos.local.dao.DaoCliente
 import com.fao.orderfy.datos.utils.MainListener
 import com.fao.orderfy.presentacion.actividades.ClienteActivity
+import com.fao.orderfy.presentacion.actividades.MainActivity
 import com.fao.orderfy.presentacion.viewmodel.ViewModelCliente
 import com.google.gson.JsonArray
 
@@ -41,10 +44,10 @@ class IniciarSesionFragment : Fragment() {
                 .navigate(R.id.action_iniciarSesionFragment_to_registroFragment)
         }
         fbinding.btnIniciarSesionC.setOnClickListener {
-            if(fbinding.etUser.text.toString() == "" || fbinding.etPWD.text.toString() == ""){
+            if (fbinding.etUser.text.toString() == "" || fbinding.etPWD.text.toString() == "") {
                 Toast.makeText(activity, "Todos los campos son requeridos", Toast.LENGTH_LONG)
                     .show()
-            }else{
+            } else {
                 validarLogin()
             }
 
@@ -58,35 +61,22 @@ class IniciarSesionFragment : Fragment() {
         var viewModelCliente = ViewModelProvider(this)[ViewModelCliente::class.java]
         viewModelCliente.autenticarCliente(requireContext(), object : MainListener {
             override fun onSuccess(response: JsonArray) {
-                val valor = validarJsonArray(response)
-                if (valor) {
-                    var intent = Intent(activity, ClienteActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(activity, "Usuario no encontrado", Toast.LENGTH_LONG)
-                        .show()
 
-                }
+                var intent = Intent(activity, ClienteActivity::class.java)
+                startActivity(intent)
+
 
             }
 
             override fun onFailure(error: String) {
-                Log.wtf("error", "error: "+error)
-                Toast.makeText(activity, "Error", Toast.LENGTH_LONG)
-                    .show()
+                activity?.runOnUiThread {
+                    Toast.makeText(activity, error, Toast.LENGTH_LONG).show()
+                }
             }
 
         }, cliente)
     }
 
-    fun validarJsonArray(jsonArray: JsonArray): Boolean {
-        if (jsonArray.size() == 1) {
-            val jsonObject = jsonArray.get(0).asJsonObject
-            val valor = jsonObject.get("response").asBoolean
-            return valor
-        }
-        return false
-    }
 
 
 }

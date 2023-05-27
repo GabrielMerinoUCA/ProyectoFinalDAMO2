@@ -8,7 +8,10 @@ import com.fao.orderfy.datos.remoto.dao.ApiCliente
 import com.fao.orderfy.datos.utils.MainListener
 import com.fao.orderfy.datos.utils.RequestMethods
 import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+
 
 class RepositorioCliente(val daoCliente: DaoCliente) {
     private val requestMethods: RequestMethods = RequestMethods()
@@ -84,18 +87,28 @@ class RepositorioCliente(val daoCliente: DaoCliente) {
         try{
             val gson = Gson()
             val estadoAutenticacion = daoCliente.authenticateCliente(cliente.nombreUsuario, cliente.pwd)
-            val jsonString = gson.toJson(estadoAutenticacion)
-            val jsonParser = JsonParser()
-            val jsonArray = jsonParser.parse(jsonString).asJsonArray
+            val jsonObject = JsonObject()
+            jsonObject.addProperty("response", estadoAutenticacion.toString())
+            val jsonArray = JsonArray()
+            jsonArray.add(jsonObject)
+            //No sirve esto me da error
+            //val jsonString = gson.toJson(estadoAutenticacion)
+            //val jsonParser = JsonParser()
+            //val jsonArray = jsonParser.parse(jsonString).asJsonArray
             if(jsonArray != null) {
                 listener.onSuccess(jsonArray)
             }else{
                 listener.onFailure("Credenciales incorrectas")
             }
         }catch (e: Exception){
-            Log.wtf("error", "error: "+e)
-            listener.onFailure("Error inesperado...")
-            e.printStackTrace()
+            if (daoCliente.getCount() == 0){
+                listener.onFailure("No hay clientes guardados actualmente. Espere a tener conexión a internet")
+                e.printStackTrace()
+            }else{
+                listener.onFailure("Error inesperado...")
+                e.printStackTrace()
+            }
+
         }
     }
 }
