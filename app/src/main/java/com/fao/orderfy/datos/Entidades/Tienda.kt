@@ -1,11 +1,14 @@
 package com.fao.orderfy.datos.Entidades
 
 import android.media.Image
+import android.os.Parcelable
 import java.sql.Time
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(tableName = "tienda")
 data class Tienda(
     @PrimaryKey(autoGenerate = false)
@@ -25,4 +28,4 @@ data class Tienda(
 
     @ColumnInfo(name = "estado")
     var estado: Boolean,
-)
+): Parcelable

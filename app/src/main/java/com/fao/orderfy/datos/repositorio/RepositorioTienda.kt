@@ -42,9 +42,9 @@ class RepositorioTienda(val daoTienda: DaoTienda) {
     }
 
     // SOLO REMOTO
-    fun cambiarEstadoTiendaRemoto(listener: MainListener, tienda: Tienda) {
+    fun cambiarEstadoTiendaRemoto(listener: MainListener, idTienda: Int) {
         val api: ApiTienda = RetrofitService.getApi(ApiTienda::class.java)
-        val service = api.cambiarEstadoTienda(tienda.idTienda)
+        val service = api.cambiarEstadoTienda(idTienda)
         requestMethods.request(service, listener)
     }
 

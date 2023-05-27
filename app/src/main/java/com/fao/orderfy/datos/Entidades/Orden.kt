@@ -1,11 +1,13 @@
 package com.fao.orderfy.datos.Entidades
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 import java.sql.Time
-
+@Parcelize
 @Entity(
     tableName = "orden",
     foreignKeys = [
@@ -36,4 +38,4 @@ data class Orden(
     var estado: Int,
     var idCliente: Int,
     var idProducto: Int,
-)
+) : Parcelable

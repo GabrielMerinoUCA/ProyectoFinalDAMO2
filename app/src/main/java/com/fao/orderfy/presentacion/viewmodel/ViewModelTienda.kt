@@ -37,7 +37,7 @@ class ViewModelTienda(application: Application): AndroidViewModel(application) {
         repositorio.eliminarTiendaRemoto(listener, tienda)
     }
 
-    fun cambiarEstadoTienda(listener: MainListener, tienda: Tienda) {
-        repositorio.cambiarEstadoTiendaRemoto(listener, tienda)
+    fun cambiarEstadoTienda(listener: MainListener, idTienda: Int) {
+        repositorio.cambiarEstadoTiendaRemoto(listener, idTienda)
     }
 }

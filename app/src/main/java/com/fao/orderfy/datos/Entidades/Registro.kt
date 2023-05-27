@@ -1,10 +1,12 @@
 package com.fao.orderfy.datos.Entidades
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 import java.sql.Time
-
+@Parcelize
 @Entity(tableName = "registro")
 data class Registro(
     @PrimaryKey(autoGenerate = false)
@@ -33,4 +35,4 @@ data class Registro(
 
     @ColumnInfo(name = "estado")
     var estado: Int
-)
+): Parcelable

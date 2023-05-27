@@ -26,6 +26,8 @@ import com.google.gson.JsonArray
 
 class IniciarSesionVendedorFragment : Fragment() {
     private lateinit var fbinding: FragmentIniciarSesionVendedorBinding
+    private lateinit var viewModelVendedor: ViewModelVendedor
+    private var vendedores: ArrayList<Vendedor> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,19 +35,22 @@ class IniciarSesionVendedorFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         fbinding = FragmentIniciarSesionVendedorBinding.inflate(layoutInflater)
+        viewModelVendedor = ViewModelProvider(this)[ViewModelVendedor::class.java]
         iniciar()
         return fbinding.root
     }
 
     private fun iniciar() {
+        obtenerVendedores()
         fbinding.tvRegistrar.setOnClickListener {
-            Navigation.findNavController(fbinding.root).navigate(R.id.action_iniciarSesionVendedorFragment_to_registroFragment)
+            Navigation.findNavController(fbinding.root)
+                .navigate(R.id.action_iniciarSesionVendedorFragment_to_registroFragment)
         }
         fbinding.btnIniciarSesionC.setOnClickListener {
-            if(fbinding.etUser.text.toString() == "" || fbinding.etPWD.text.toString() == ""){
+            if (fbinding.etUser.text.toString() == "" || fbinding.etPWD.text.toString() == "") {
                 Toast.makeText(activity, "Todos los campos son requeridos", Toast.LENGTH_LONG)
                     .show()
-            }else{
+            } else {
                 validarLogin()
             }
         }
@@ -55,30 +60,66 @@ class IniciarSesionVendedorFragment : Fragment() {
 
         var userName = fbinding.etUser.text.toString()
         var pwd = fbinding.etPWD.text.toString()
-        var vendedor = Vendedor(0, 0,userName, pwd)
+        var vendedor = Vendedor(0, 0, userName, pwd)
 
-        var viewModelVendedor = ViewModelProvider(this)[ViewModelVendedor::class.java]
-       viewModelVendedor.autenticarVendedor(object : MainListener {
+        viewModelVendedor.autenticarVendedor(object : MainListener {
             override fun onSuccess(response: JsonArray) {
                 val valor = validarJsonArray(response)
                 if (valor) {
                     var intent = Intent(activity, VendedorActivity::class.java)
+                    var sesion = Vendedor(0,0,"","")
+                    for (x in vendedores) {
+                        if (x.nombreUsuario == vendedor.nombreUsuario && x.pwd == vendedor.pwd) {
+                            sesion = x
+                        }
+                    }
+                    intent.putExtra("SesionVendedor", sesion)
                     startActivity(intent)
                 } else {
                     Toast.makeText(activity, "Usuario no encontrado", Toast.LENGTH_LONG)
                         .show()
-
                 }
-
             }
 
             override fun onFailure(error: String) {
-                Log.wtf("error", "error: "+error)
-                Toast.makeText(activity, "Error", Toast.LENGTH_LONG)
+                Log.wtf("error", "error: " + error)
+                Toast.makeText(activity, "Error", Toast.LENGTH_SHORT)
                     .show()
             }
-
         }, vendedor)
+    }
+
+    private fun obtenerVendedores() {
+        viewModelVendedor.consultarVendedor(requireContext(), object : MainListener {
+            override fun onSuccess(response: JsonArray) {
+                val length = response.size()
+                var i = 0
+                do {
+                    if (length != 0) {
+                        val vendedor = response[i].asJsonObject
+                        val id = vendedor.get("id").asInt
+                        val nombreUsuario = vendedor.get("nombreUsuario").asString
+                        val pwd = vendedor.get("pwd").asString
+                        val idTienda = vendedor.get("idTienda").asInt
+                        vendedores.add(
+                            Vendedor(
+                                idTienda,
+                                id,
+                                nombreUsuario,
+                                pwd
+                            )
+                        )
+                    }
+                    i++
+                } while (i < length - 1)
+            }
+
+            override fun onFailure(error: String) {
+                Log.wtf("error", "error: " + error)
+                Toast.makeText(activity, "Error", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
     }
 
     fun validarJsonArray(jsonArray: JsonArray): Boolean {
@@ -89,6 +130,4 @@ class IniciarSesionVendedorFragment : Fragment() {
         }
         return false
     }
-
-
 }

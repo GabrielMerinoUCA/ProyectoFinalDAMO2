@@ -1,9 +1,12 @@
 package com.fao.orderfy.datos.Entidades
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(tableName = "administrador")
 data class Administrador(
     @PrimaryKey(autoGenerate = false)
@@ -16,4 +19,4 @@ data class Administrador(
     var nombreUsuario: String,
     @ColumnInfo(name = "pwd")
     var pwd: String
-)
+) : Parcelable

@@ -1,10 +1,13 @@
 package com.fao.orderfy.datos.Entidades
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(tableName = "vendedor",
     foreignKeys = [
         ForeignKey(entity = Tienda::class,
@@ -24,4 +27,4 @@ data class Vendedor(
 
     @ColumnInfo(name = "pwd")
     var pwd: String,
-)
+): Parcelable

@@ -36,12 +36,12 @@
         app:layout_constraintVertical_bias="0.04000002" />
 
     <EditText
+        android:paddingStart="20dp"
         android:id="@+id/etNombreLocal"
         android:layout_width="287dp"
         android:layout_height="45dp"
         android:background="@drawable/text_circular"
         android:backgroundTint="#D9D9D9"
-        android:hint="Papa delta"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,12 +64,13 @@
         app:layout_constraintVertical_bias="0.060000002" />
 
     <EditText
+        android:paddingStart="20dp"
         android:id="@+id/etHoraApertura"
         android:layout_width="287dp"
         android:layout_height="45dp"
         android:background="@drawable/text_circular"
         android:backgroundTint="#D9D9D9"
-        android:hint="08:00:00"
+        android:hint="hh:mm"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,12 +92,13 @@
         app:layout_constraintVertical_bias="0.060000002" />
 
     <EditText
+        android:paddingStart="20dp"
         android:id="@+id/etHoraCierre"
         android:layout_width="287dp"
         android:layout_height="45dp"
         android:background="@drawable/text_circular"
         android:backgroundTint="#D9D9D9"
-        android:hint="21:00:00"
+        android:hint="hh:mm"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
