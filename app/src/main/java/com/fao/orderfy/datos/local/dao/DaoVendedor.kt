@@ -19,5 +19,11 @@ interface DaoVendedor {
     @Query("DELETE FROM vendedor WHERE idVendedor = :idVendedor")
     suspend fun deleteVendedor(idVendedor: String)
 
+    @Query("SELECT COUNT(*) FROM vendedor")
+    fun getCount(): Int
+
+    @Query("SELECT COUNT(*) FROM vendedor WHERE nombreUsuario = :nombreUsuario")
+    suspend fun contarUsuarioPorNombre(nombreUsuario: String): Int
+
     // TODO: El autentication que no se como se hace xd
 }

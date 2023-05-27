@@ -18,10 +18,14 @@ import com.fao.orderfy.datos.repositorio.RepositorioCliente
 import com.fao.orderfy.datos.utils.MainListener
 import com.fao.orderfy.presentacion.viewmodel.ViewModelCliente
 import com.google.gson.JsonArray
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ContinuarCrearCuentaFragment : Fragment() {
     private lateinit var fbinding: FragmentContinuarCrearCuentaBinding
     lateinit var room: BD
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -83,11 +87,17 @@ class ContinuarCrearCuentaFragment : Fragment() {
                 Toast.makeText(activity, "Cliente Registrado Correctamente", Toast.LENGTH_LONG)
                     .show()
 
+                coroutineScope.launch {
+                    HomeFragment.cargarDatosCliente(requireContext())
+                }
+
+
             }
 
             override fun onFailure(error: String) {
-                Toast.makeText(activity, "Error", Toast.LENGTH_LONG)
-                    .show()
+                activity?.runOnUiThread {
+                    Toast.makeText(activity, error, Toast.LENGTH_LONG).show()
+                }
             }
 
         }, cliente)

@@ -2,7 +2,6 @@ package com.fao.orderfy.presentacion.fragmentos
 
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
@@ -13,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.navArgs
 import com.fao.orderfy.R
 import com.fao.orderfy.databinding.FragmentVendedorLocalBinding
 import com.fao.orderfy.datos.Entidades.Tienda
@@ -25,6 +23,7 @@ import com.google.gson.JsonArray
 import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.Locale
+import com.fao.orderfy.datos.utils.TimePickerFragment
 
 
 class VendedorLocalFragment : Fragment() {
@@ -71,6 +70,8 @@ class VendedorLocalFragment : Fragment() {
                 }
             }, sesionVendedor.idTienda)
         }
+        fbinding.etHoraCierre.setOnClickListener{showTimePickerDialog2()}
+        fbinding.etHoraApertura.setOnClickListener{showTimePickerDialog()}
     }
 
     @SuppressLint("SetTextI18n")
@@ -160,5 +161,31 @@ class VendedorLocalFragment : Fragment() {
         return false
     }
 
+    private fun showTimePickerDialog() {
+        val timePicker = TimePickerFragment {onTimeSelected(it)}
+        timePicker.show(parentFragmentManager, "time")
+    }
 
+    private fun onTimeSelected(time:String){
+        fbinding.etHoraApertura.setText("$time")
+    }
+    private fun onTimeSelected2(time:String){
+        fbinding.etHoraCierre.setText("$time")
+    }
+
+    fun convertStringToTime(timeString: String): Time? {
+        val format = SimpleDateFormat("HH:mm:ss")
+        return try {
+            val date = format.parse(timeString)
+            Time(date.time)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    private fun showTimePickerDialog2() {
+        val timePicker = TimePickerFragment {onTimeSelected2(it)}
+        timePicker.show(parentFragmentManager, "time")
+    }
 }

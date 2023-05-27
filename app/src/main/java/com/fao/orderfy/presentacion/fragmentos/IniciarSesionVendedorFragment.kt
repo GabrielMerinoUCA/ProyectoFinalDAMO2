@@ -12,16 +12,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.fao.orderfy.R
 import com.fao.orderfy.databinding.FragmentIniciarSesionVendedorBinding
-import com.fao.orderfy.datos.Entidades.Cliente
 import com.fao.orderfy.datos.Entidades.Vendedor
-import com.fao.orderfy.datos.local.BD.BD
-import com.fao.orderfy.datos.repositorio.RepositorioCliente
 import com.fao.orderfy.datos.utils.MainListener
-import com.fao.orderfy.presentacion.actividades.ClienteActivity
+import com.fao.orderfy.presentacion.actividades.AdminActivity
 import com.fao.orderfy.presentacion.actividades.VendedorActivity
-import com.fao.orderfy.presentacion.viewmodel.ViewModelCliente
 import com.fao.orderfy.presentacion.viewmodel.ViewModelVendedor
 import com.google.gson.JsonArray
+import com.google.gson.JsonElement
 
 
 class IniciarSesionVendedorFragment : Fragment() {
@@ -57,15 +54,13 @@ class IniciarSesionVendedorFragment : Fragment() {
     }
 
     private fun validarLogin() {
-
         var userName = fbinding.etUser.text.toString()
         var pwd = fbinding.etPWD.text.toString()
         var vendedor = Vendedor(0, 0, userName, pwd)
-
         viewModelVendedor.autenticarVendedor(object : MainListener {
             override fun onSuccess(response: JsonArray) {
                 val valor = validarJsonArray(response)
-                if (valor) {
+                if (valor.asBoolean) {
                     var intent = Intent(activity, VendedorActivity::class.java)
                     var sesion = Vendedor(0,0,"","")
                     for (x in vendedores) {
@@ -75,16 +70,25 @@ class IniciarSesionVendedorFragment : Fragment() {
                     }
                     intent.putExtra("SesionVendedor", sesion)
                     startActivity(intent)
+
+                } else if (valor.asString == "admin-true") {
+                    var intent = Intent(activity, AdminActivity::class.java)
+                    startActivity(intent)
+
                 } else {
-                    Toast.makeText(activity, "Usuario no encontrado", Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(
+                        activity,
+                        "Usuario no encontrado",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
 
             override fun onFailure(error: String) {
                 Log.wtf("error", "error: " + error)
-                Toast.makeText(activity, "Error", Toast.LENGTH_SHORT)
-                    .show()
+                activity?.runOnUiThread {
+                    Toast.makeText(activity, error, Toast.LENGTH_LONG).show()
+                }
             }
         }, vendedor)
     }
@@ -122,12 +126,8 @@ class IniciarSesionVendedorFragment : Fragment() {
         })
     }
 
-    fun validarJsonArray(jsonArray: JsonArray): Boolean {
-        if (jsonArray.size() == 1) {
-            val jsonObject = jsonArray.get(0).asJsonObject
-            val valor = jsonObject.get("response").asBoolean
-            return valor
-        }
-        return false
+    fun validarJsonArray(jsonArray: JsonArray): JsonElement {
+        val jsonObject = jsonArray.get(0).asJsonObject
+        return jsonObject.get("response")
     }
 }

@@ -9,23 +9,22 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.fao.orderfy.R
-import com.fao.orderfy.TimePickerFragment
+import com.fao.orderfy.datos.utils.TimePickerFragment
 import com.fao.orderfy.databinding.FragmentContinuarRegistroVendedorBinding
 import com.fao.orderfy.datos.Entidades.Registro
-import com.fao.orderfy.datos.Entidades.Vendedor
 import com.fao.orderfy.datos.local.BD.BD
-import com.fao.orderfy.datos.repositorio.RepositorioCliente
-import com.fao.orderfy.datos.repositorio.RepositorioRegistro
 import com.fao.orderfy.datos.utils.MainListener
-import com.fao.orderfy.presentacion.viewmodel.ViewModelCliente
 import com.fao.orderfy.presentacion.viewmodel.ViewModelRegistro
-import com.fao.orderfy.presentacion.viewmodel.ViewModelVendedor
 import com.google.gson.JsonArray
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.sql.Time
 
 class ContinuarRegistroVendedorFragment : Fragment() {
     private lateinit var fbinding: FragmentContinuarRegistroVendedorBinding
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
 
     override fun onCreateView(
@@ -71,11 +70,13 @@ class ContinuarRegistroVendedorFragment : Fragment() {
                 Toast.makeText(activity, "Registro Ingresado Correctamente", Toast.LENGTH_LONG)
                     .show()
 
+
             }
 
             override fun onFailure(error: String) {
-                Toast.makeText(activity, "Error", Toast.LENGTH_LONG)
-                    .show()
+                activity?.runOnUiThread {
+                    Toast.makeText(activity, error, Toast.LENGTH_LONG).show()
+                }
             }
 
         }, registro)

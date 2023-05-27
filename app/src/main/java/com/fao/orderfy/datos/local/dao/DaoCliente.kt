@@ -39,4 +39,10 @@ interface DaoCliente {
     @Query("SELECT CASE WHEN EXISTS(SELECT * FROM cliente WHERE nombreUsuario = :nombreUsuario AND pwd = :pwd) THEN 1 ELSE 0 END")
     suspend fun authenticateCliente(nombreUsuario: String, pwd: String): Boolean
 
+    @Query("SELECT COUNT(*) FROM cliente")
+    suspend fun getCount(): Int
+
+    @Query("SELECT COUNT(*) FROM cliente WHERE nombreUsuario = :nombreUsuario")
+    suspend fun contarUsuarioPorNombre(nombreUsuario: String): Int
+
 }
