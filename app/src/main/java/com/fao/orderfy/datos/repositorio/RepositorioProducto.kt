@@ -17,9 +17,9 @@ class RepositorioProducto(val daoProducto: DaoProducto) {
     //////////  SECCCION DE ACCESO REMOTO   //////////
     //////////////////////////////////////////////////
 
-    fun consultarProductoRemoto(listener: MainListener, tienda: Tienda) {
+    fun consultarProductoRemoto(listener: MainListener, idTienda: Int) {
         val api: ApiProducto = RetrofitService.getApi(ApiProducto::class.java)
-        val service = api.consultarProductosTienda(tienda.idTienda)
+        val service = api.consultarProductosTienda(idTienda)
         requestMethods.request(service, listener)
     }
 
@@ -70,10 +70,10 @@ class RepositorioProducto(val daoProducto: DaoProducto) {
     //////////  SECCCION DE ACCESO LOCAL    //////////
     //////////////////////////////////////////////////
 
-    suspend fun consultarProductoLocal(listener: MainListener, tienda: Tienda) {
+    suspend fun consultarProductoLocal(listener: MainListener, idTienda: Int) {
         try {
             val gson = Gson()
-            val producto = daoProducto.consultarProductosTienda(tienda.idTienda)
+            val producto = daoProducto.consultarProductosTienda(idTienda)
             val jsonString = gson.toJson(producto)
             val jsonParser = JsonParser()
             val jsonArray = jsonParser.parse(jsonString).asJsonArray

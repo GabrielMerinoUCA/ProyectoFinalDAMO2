@@ -20,12 +20,12 @@ class ViewModelProducto(application: Application): AndroidViewModel(application)
         repositorio = RepositorioProducto(dao)
     }
 
-    fun consultarProducto(context: Context, listener: MainListener, tienda: Tienda) {
+    fun consultarProducto(context: Context, listener: MainListener, idTienda: Int) {
         if(RetrofitService.isServerReachable(context) != false) {
-            repositorio.consultarProductoRemoto(listener, tienda)
+            repositorio.consultarProductoRemoto(listener, idTienda)
         }else{
             viewModelScope.launch(Dispatchers.IO) {
-                repositorio.consultarProductoLocal(listener, tienda)
+                repositorio.consultarProductoLocal(listener, idTienda)
             }
         }
     }
@@ -34,7 +34,7 @@ class ViewModelProducto(application: Application): AndroidViewModel(application)
         repositorio.editarProductoRemoto(listener, producto)
     }
 
-    fun eliminarProductoRemoto(listener: MainListener, producto: Producto) {
+    fun eliminarProducto(listener: MainListener, producto: Producto) {
         repositorio.eliminarProductoRemoto(listener, producto)
     }
 

@@ -2,6 +2,7 @@ package com.fao.orderfy.presentacion.fragmentos
 
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
@@ -80,10 +81,13 @@ class VendedorLocalFragment : Fragment() {
             fbinding.btnCerrar.text = "Cerrar"
             val color = ContextCompat.getColor(requireActivity(), R.color.rojo)
             fbinding.btnCerrar.backgroundTintList = ColorStateList.valueOf(color)
+            fbinding.btnCerrar.setTextColor(ColorStateList.valueOf(ContextCompat.getColor(requireActivity(), R.color.white)))
+
         } else {
             fbinding.btnCerrar.text = "Abrir"
             val color = ContextCompat.getColor(requireActivity(), R.color.azul)
             fbinding.btnCerrar.backgroundTintList = ColorStateList.valueOf(color)
+            fbinding.btnCerrar.setTextColor(ColorStateList.valueOf(Color.parseColor("#175676")))
         }
     }
 

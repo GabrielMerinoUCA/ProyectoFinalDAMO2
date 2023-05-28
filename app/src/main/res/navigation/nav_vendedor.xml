@@ -63,5 +63,12 @@
         android:id="@+id/vendedorEditarProdFragment"
         android:name="com.fao.orderfy.presentacion.fragmentos.VendedorEditarProdFragment"
         android:label="fragment_vendedor_editar_prod"
-        tools:layout="@layout/fragment_vendedor_editar_prod" />
+        tools:layout="@layout/fragment_vendedor_editar_prod" >
+        <argument
+            android:name="producto"
+            app:argType="com.fao.orderfy.datos.Entidades.Producto" />
+        <action
+            android:id="@+id/action_vendedorEditarProdFragment_to_vendedorMenuFragment"
+            app:destination="@id/vendedorMenuFragment" />
+    </fragment>
 </navigation>
