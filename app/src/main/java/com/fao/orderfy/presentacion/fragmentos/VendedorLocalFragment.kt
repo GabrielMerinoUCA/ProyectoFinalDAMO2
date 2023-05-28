@@ -3,6 +3,7 @@ package com.fao.orderfy.presentacion.fragmentos
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
@@ -11,8 +12,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.fao.orderfy.R
 import com.fao.orderfy.databinding.FragmentVendedorLocalBinding
 import com.fao.orderfy.datos.Entidades.Tienda
@@ -32,6 +38,7 @@ class VendedorLocalFragment : Fragment() {
     private lateinit var viewModelTienda: ViewModelTienda
     private lateinit var sesionVendedor: Vendedor
     private lateinit var tiendaVendedor: Tienda
+    private lateinit var launcher: ActivityResultLauncher<String>
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,7 +51,11 @@ class VendedorLocalFragment : Fragment() {
         return fbinding.root
     }
 
+
+
+
     private fun iniciar() {
+        cargarImagen()
         cargarTienda()
         fbinding.btnCerrar.setOnClickListener {
             viewModelTienda.cambiarEstadoTienda(object : MainListener {
@@ -73,6 +84,27 @@ class VendedorLocalFragment : Fragment() {
         }
         fbinding.etHoraCierre.setOnClickListener{showTimePickerDialog2()}
         fbinding.etHoraApertura.setOnClickListener{showTimePickerDialog()}
+    }
+
+    private fun cargarImagen(){
+        launcher = registerForActivityResult(ActivityResultContracts.GetContent()) { result ->
+            if (result != null) {
+                // Process the selected image here
+                val selectedImageUri: Uri = result
+                Glide.with(requireContext())
+                    .load(selectedImageUri)
+                    .override(fbinding.ivLogo.width, fbinding.ivLogo.height)
+                    .transform(
+                        CenterCrop(),
+                        RoundedCorners(20),
+                    )
+                    .into(fbinding.ivLogo)
+            }
+        }
+
+        fbinding.ivLogo.setOnClickListener {
+            launcher.launch("image/*")
+        }
     }
 
     @SuppressLint("SetTextI18n")

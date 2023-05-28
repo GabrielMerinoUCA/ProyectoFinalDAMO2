@@ -1,5 +1,6 @@
 package com.fao.orderfy.presentacion.fragmentos
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,9 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.fao.orderfy.R
 import com.fao.orderfy.databinding.FragmentVendedorEditarProdBinding
 import com.fao.orderfy.datos.Entidades.Producto
@@ -22,6 +28,7 @@ class VendedorEditarProdFragment : Fragment() {
     private lateinit var fbinding: FragmentVendedorEditarProdBinding
     private lateinit var viewModelProducto: ViewModelProducto
     private val args: VendedorEditarProdFragmentArgs by navArgs()
+    private lateinit var launcher: ActivityResultLauncher<String>
     private lateinit var producto: Producto
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +43,7 @@ class VendedorEditarProdFragment : Fragment() {
     }
 
     private fun iniciar() {
+        cargarImagen()
         fbinding.etNombreProd.setText(producto.nombre)
         fbinding.etDescipcion.setText(producto.descripcion)
         fbinding.etPrecio.setText(producto.precio.toString())
@@ -84,6 +92,27 @@ class VendedorEditarProdFragment : Fragment() {
                 }
 
             }, producto)
+        }
+    }
+
+    private fun cargarImagen(){
+        launcher = registerForActivityResult(ActivityResultContracts.GetContent()) { result ->
+            if (result != null) {
+                // Process the selected image here
+                val selectedImageUri: Uri = result
+                Glide.with(requireContext())
+                    .load(selectedImageUri)
+                    .override(fbinding.ivLogo.width, fbinding.ivLogo.height)
+                    .transform(
+                        CenterCrop(),
+                        RoundedCorners(20),
+                    )
+                    .into(fbinding.ivLogo)
+            }
+        }
+
+        fbinding.ivLogo.setOnClickListener {
+            launcher.launch("image/*")
         }
     }
 
