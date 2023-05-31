@@ -76,7 +76,6 @@ class VendedorAgregarProdFragment : Fragment() {
                         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
                         val byteArray: ByteArray = stream.toByteArray()
                         producto.imagen = byteArray
-
                     }
 
                     is VectorDrawable -> {

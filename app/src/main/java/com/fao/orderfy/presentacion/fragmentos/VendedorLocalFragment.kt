@@ -84,6 +84,11 @@ class VendedorLocalFragment : Fragment() {
         }
         fbinding.etHoraCierre.setOnClickListener{showTimePickerDialog2()}
         fbinding.etHoraApertura.setOnClickListener{showTimePickerDialog()}
+        fbinding.btnGuardar.setOnClickListener {
+            fbinding.etHoraApertura.setText(tiendaVendedor.horaApertura.toString())
+            fbinding.etHoraCierre.setText(tiendaVendedor.horaCierre.toString())
+            fbinding.etNombreLocal.setText(tiendaVendedor.nombre)
+        }
     }
 
     private fun cargarImagen(){
