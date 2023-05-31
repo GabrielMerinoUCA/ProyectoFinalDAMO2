@@ -86,7 +86,7 @@ class HomeFragment : Fragment() {
                         val id = jsonObject.get("id").asString.toInt()
                         val nombre = jsonObject.get("nombre").asString
                         val apellido = jsonObject.get("apellido").asString
-                        val nombreUsuario = jsonObject.get("nombreUsuaario").asString
+                        val nombreUsuario = jsonObject.get("nombreUsuario").asString
                         val pwd = jsonObject.get("pwd").asString
                         val cliente = Cliente(id, nombre, apellido, nombreUsuario, pwd)
                         coroutineScope.launch {

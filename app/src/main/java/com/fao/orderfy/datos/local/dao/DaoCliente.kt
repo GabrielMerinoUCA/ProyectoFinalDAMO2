@@ -7,6 +7,8 @@ import androidx.room.Query
 import androidx.room.Update
 import com.fao.orderfy.datos.Entidades.Administrador
 import com.fao.orderfy.datos.Entidades.Cliente
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 
 @Dao
 interface DaoCliente {
@@ -44,5 +46,8 @@ interface DaoCliente {
 
     @Query("SELECT COUNT(*) FROM cliente WHERE nombreUsuario = :nombreUsuario")
     suspend fun contarUsuarioPorNombre(nombreUsuario: String): Int
+
+    @Query("SELECT idCliente FROM cliente WHERE nombreUsuario = :nombreUsuario")
+    suspend fun obtenerIdPorNombreUsuario(nombreUsuario: String): Int
 
 }
