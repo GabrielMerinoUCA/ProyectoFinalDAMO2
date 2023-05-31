@@ -58,7 +58,11 @@
         android:id="@+id/vendedorAgregarProdFragment"
         android:name="com.fao.orderfy.presentacion.fragmentos.VendedorAgregarProdFragment"
         android:label="fragment_vendedor_agregar_prod"
-        tools:layout="@layout/fragment_vendedor_agregar_prod" />
+        tools:layout="@layout/fragment_vendedor_agregar_prod" >
+        <action
+            android:id="@+id/action_vendedorAgregarProdFragment_to_vendedorMenuFragment"
+            app:destination="@id/vendedorMenuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/vendedorEditarProdFragment"
         android:name="com.fao.orderfy.presentacion.fragmentos.VendedorEditarProdFragment"

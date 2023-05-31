@@ -55,7 +55,8 @@ class HomeFragment : Fragment() {
     private fun iniciar() {
         fbinding.btnCrearCuenta.setOnClickListener {
             if (RetrofitService.isServerReachable(requireContext())) {
-                Navigation.findNavController(fbinding.root).navigate(R.id.action_homeFragment_to_registroFragment)
+                Navigation.findNavController(fbinding.root)
+                    .navigate(R.id.action_homeFragment_to_registroFragment)
             } else {
                 Toast.makeText(activity, "No tiene conexion a internet", Toast.LENGTH_LONG).show()
             }
@@ -63,20 +64,21 @@ class HomeFragment : Fragment() {
         }
         fbinding.btnIniciarSesion.setOnClickListener {
 
-            Navigation.findNavController(fbinding.root).navigate(R.id.action_homeFragment_to_seleccionUsuarioLoginFragment)
-
+            Navigation.findNavController(fbinding.root)
+                .navigate(R.id.action_homeFragment_to_seleccionUsuarioLoginFragment)
 
 
         }
     }
 
-    companion object{
+    companion object {
 
         private val coroutineScope = CoroutineScope(Dispatchers.Main)
         private lateinit var applicationContext: Context
         suspend fun cargarDatosCliente(context: Context) {
             var bd = BD.getDatabase(context)
-            val viewModelCliente = ViewModelProvider(context as ViewModelStoreOwner)[ViewModelCliente::class.java]
+            val viewModelCliente =
+                ViewModelProvider(context as ViewModelStoreOwner)[ViewModelCliente::class.java]
             viewModelCliente.consultarCliente(object : MainListener {
                 override fun onSuccess(response: JsonArray) {
                     val jsonArrayString = response.toString()
@@ -111,10 +113,7 @@ class HomeFragment : Fragment() {
 
                 override fun onFailure(error: String) {
 
-                        Handler(Looper.getMainLooper()).post {
-                            Toast.makeText(applicationContext, error, Toast.LENGTH_LONG).show()
-                        }
-                    }
+                }
 
             })
         }

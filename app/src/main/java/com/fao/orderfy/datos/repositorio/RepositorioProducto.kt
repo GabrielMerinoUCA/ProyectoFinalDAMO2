@@ -1,5 +1,8 @@
 package com.fao.orderfy.datos.repositorio
 
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import com.fao.orderfy.datos.Entidades.Producto
 import com.fao.orderfy.datos.Entidades.Tienda
 import com.fao.orderfy.datos.local.dao.DaoProducto
@@ -9,6 +12,7 @@ import com.fao.orderfy.datos.utils.MainListener
 import com.fao.orderfy.datos.utils.RequestMethods
 import com.google.gson.Gson
 import com.google.gson.JsonParser
+import java.util.Base64
 
 class RepositorioProducto(val daoProducto: DaoProducto) {
     private val requestMethods: RequestMethods = RequestMethods()
@@ -24,6 +28,7 @@ class RepositorioProducto(val daoProducto: DaoProducto) {
     }
 
     // SOLO REMOTO
+    @RequiresApi(Build.VERSION_CODES.O)
     fun editarProductoRemoto(listener: MainListener, producto: Producto) {
         val api: ApiProducto = RetrofitService.getApi(ApiProducto::class.java)
         val service = api.editarProducto(
@@ -31,7 +36,7 @@ class RepositorioProducto(val daoProducto: DaoProducto) {
             producto.nombre,
             producto.descripcion,
             producto.precio,
-            producto.imagen,
+            byteArrayToBase64(producto.imagen),
             producto.disponibilidad,
             producto.tiempoEstimado
         )
@@ -46,6 +51,7 @@ class RepositorioProducto(val daoProducto: DaoProducto) {
     }
 
     // SOLO REMOTO
+    @RequiresApi(Build.VERSION_CODES.O)
     fun insertarProductoRemoto(listener: MainListener, producto: Producto) {
         val api: ApiProducto = RetrofitService.getApi(ApiProducto::class.java)
         val service = api.insertarProducto(
@@ -53,10 +59,15 @@ class RepositorioProducto(val daoProducto: DaoProducto) {
             producto.nombre,
             producto.descripcion,
             producto.precio,
-            producto.imagen,
+            byteArrayToBase64(producto.imagen),
             producto.tiempoEstimado
         )
         requestMethods.request(service, listener)
+    }
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun byteArrayToBase64(byteArray: ByteArray): String {
+        val base64Bytes = Base64.getEncoder().encode(byteArray)
+        return String(base64Bytes)
     }
 
     // SOLO REMOTO

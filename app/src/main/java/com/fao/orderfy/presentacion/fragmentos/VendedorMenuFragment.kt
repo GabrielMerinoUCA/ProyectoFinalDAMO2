@@ -58,6 +58,9 @@ class VendedorMenuFragment : Fragment() {
                     cargarRecycler()
                     Log.wtf("VendedorMenuFragment", "Cargado productos")
                 }
+                else{
+                    Log.wtf("JSON", "JSON NO FUE VALIDADO!")
+                }
             }
 
             override fun onFailure(error: String) {
@@ -105,7 +108,7 @@ class VendedorMenuFragment : Fragment() {
                 )
             }
             i++
-        } while (i < length - 1)
+        } while (i < length)
     }
 
     private fun cargarRecycler() {
@@ -115,7 +118,7 @@ class VendedorMenuFragment : Fragment() {
         Log.wtf("ListaMenu", "${productoList.size}" )
     }
     private fun validarJsonArray(jsonArray: JsonArray): Boolean {
-        if (jsonArray.size() == 1) {
+        if (jsonArray.size() > 0) {
             val jsonObject = jsonArray.get(0).asJsonObject
             if(!jsonObject.has("response")) return true
             val valor: Boolean? = jsonObject.get("response").asBoolean
