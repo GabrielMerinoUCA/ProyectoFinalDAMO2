@@ -18,7 +18,7 @@ interface ApiProducto {
         @Field("nombre") nombre: String,
         @Field("descripcion") descripcion: String,
         @Field("precio") precio: Float,
-        @Field("imagen") imagen: ByteArray,
+        @Field("imagen") imagen: String,
         @Field("tiempoEstimado") tiempoEstimado: Int
     ): Call<JsonArray>
 
@@ -41,7 +41,7 @@ interface ApiProducto {
         @Field("nombre") nombre: String,
         @Field("descripcion") descripcion: String,
         @Field("precio") precio: Float,
-        @Field("imagen") imagen: ByteArray,
+        @Field("imagen") imagen: String,
         @Field("disponibilidad") disponibilidad: Boolean,
         @Field("tiempoEstimado") tiempoEstimado: Int
     ): Call<JsonArray>

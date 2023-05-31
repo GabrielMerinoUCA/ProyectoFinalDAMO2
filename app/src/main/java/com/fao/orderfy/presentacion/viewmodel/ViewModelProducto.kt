@@ -2,6 +2,8 @@ package com.fao.orderfy.presentacion.viewmodel
 
 import android.app.Application
 import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.fao.orderfy.datos.Entidades.Producto
@@ -30,6 +32,7 @@ class ViewModelProducto(application: Application): AndroidViewModel(application)
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun editarProducto(listener: MainListener, producto: Producto) {
         repositorio.editarProductoRemoto(listener, producto)
     }
@@ -38,6 +41,7 @@ class ViewModelProducto(application: Application): AndroidViewModel(application)
         repositorio.eliminarProductoRemoto(listener, producto)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun insertarProducto(listener: MainListener, producto: Producto) {
         repositorio.insertarProductoRemoto(listener, producto)
     }

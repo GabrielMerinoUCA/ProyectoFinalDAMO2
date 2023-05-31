@@ -23,10 +23,11 @@
         android:id="@+id/rvProductosMenu"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         tools:listitem="@layout/vendedor_prod_list"
         android:layout_centerInParent="true"
-        app:layout_constraintTop_toBottomOf="@+id/tvUsuariosText" />
+        app:layout_constraintTop_toBottomOf="@+id/tvUsuariosText"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
