@@ -9,11 +9,20 @@ $horaApertura = $_POST['horaApertura'];
 $horaCierre = $_POST['horaCierre'];
 $pwd = $_POST['pwd'];
 
-$q = 'INSERT INTO registro(nombre, apellido, nombreUsuario, nombreTienda, horaApertura, horaCierre, pwd, estado) VALUES ("' . $nombre . '","' . $apellido . '","' . $nombreUsuario . '","' . $nombreTienda . '","' . $horaApertura . '","' . $horaCierre . '","' . $pwd . '","'. 0 . '")';
+$q = "SELECT * FROM vendedor WHERE nombreUsuario = '$nombreUsuario'";
 $query = mysqli_query($con, $q);
 
-if($query == true){
-    $json[] = array('response' => 'true');
+$usuarioObtenido = $query ->fetch_array();
+
+if($usuarioObtenido == null){
+    $q = 'INSERT INTO registro(nombre, apellido, nombreUsuario, nombreTienda, horaApertura, horaCierre, pwd, estado) VALUES ("' . $nombre . '","' . $apellido . '","' . $nombreUsuario . '","' . $nombreTienda . '","' . $horaApertura . '","' . $horaCierre . '","' . $pwd . '","'. 0 . '")';
+    $query = mysqli_query($con, $q);
+    
+    if($query == true){
+        $json[] = array('response' => 'true');
+    }else{
+        $json[] = array('response' => 'false');
+    }
 }else{
     $json[] = array('response' => 'false');
 }

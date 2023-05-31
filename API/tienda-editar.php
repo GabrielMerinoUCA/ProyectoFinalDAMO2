@@ -8,13 +8,19 @@ $horaApertura = $_POST['horaApertura'];
 $horaCierre = $_POST['horaCierre'];
 $logo = $_POST['logo'];
 
-$q = 'UPDATE tienda SET nombre = "' . $nombre . '", horaApertura = "' . $horaApertura . '", horaCierre = "' . $horaCierre . '", logo = "' . $logo . '" WHERE idTienda = "' . $idTienda . '"';
-$query = mysqli_query($con, $q);
+// Convertir la imagen en una cadena de caracteres binarios
+$imagen_blob = base64_decode($logo);
 
-if($query == true){
+// Insertar los datos en la base de datos
+$q = 'UPDATE tienda SET nombre = ?, horaApertura = ?, horaCierre = ?, logo = ? WHERE idTienda = ?';
+$stmt = mysqli_prepare($con, $q);
+mysqli_stmt_bind_param($stmt, 'sssss', $nombre, $horaApertura, $horaCierre, $imagen_blob, $idTienda);
+
+// Ejecutar la consulta
+if (mysqli_stmt_execute($stmt)) {
     $json[] = array('response' => 'true');
-}else{
-    $json[] = array('response' => 'false');
+} else {
+    $json[] = array('response' => 'false', 'error' => mysqli_error($con));
 }
 
 echo json_encode($json);
