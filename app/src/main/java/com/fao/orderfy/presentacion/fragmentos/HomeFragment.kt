@@ -46,10 +46,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun cargarDatos() {
-        coroutineScope.launch {
-            cargarDatosCliente(requireContext())
+        if (RetrofitService.isServerReachable(requireContext())) {
+            coroutineScope.launch {
+                cargarDatosCliente(requireContext())
+            }
+        } else {
+            Toast.makeText(activity, "No tiene conexion a internet", Toast.LENGTH_LONG).show()
         }
-
     }
 
     private fun iniciar() {
@@ -73,7 +76,7 @@ class HomeFragment : Fragment() {
     companion object{
 
         private val coroutineScope = CoroutineScope(Dispatchers.Main)
-        private lateinit var applicationContext: Context
+        //private lateinit var applicationContext: Context
         suspend fun cargarDatosCliente(context: Context) {
             var bd = BD.getDatabase(context)
             val viewModelCliente = ViewModelProvider(context as ViewModelStoreOwner)[ViewModelCliente::class.java]
@@ -112,7 +115,7 @@ class HomeFragment : Fragment() {
                 override fun onFailure(error: String) {
 
                         Handler(Looper.getMainLooper()).post {
-                            Toast.makeText(applicationContext, error, Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, error, Toast.LENGTH_LONG).show()
                         }
                     }
 

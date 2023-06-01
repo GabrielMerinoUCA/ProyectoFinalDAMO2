@@ -32,7 +32,7 @@ class RepositorioCliente(val daoCliente: DaoCliente) {
             cliente.idCliente,
             cliente.nombre,
             cliente.apellido,
-            cliente.nombre,
+            cliente.nombreUsuario,
             cliente.pwd
         )
         requestMethods.request(service, listener)
