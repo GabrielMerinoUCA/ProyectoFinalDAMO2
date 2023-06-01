@@ -24,7 +24,7 @@ interface ApiTienda {
         @Field("nombre") nombre: String,
         @Field("horaApertura") horaApertura: String,
         @Field("horaCierre") horaCierre: String,
-        @Field("logo") logo: ByteArray
+        @Field("logo") logo: String
     ): Call<JsonArray>
 
     /**

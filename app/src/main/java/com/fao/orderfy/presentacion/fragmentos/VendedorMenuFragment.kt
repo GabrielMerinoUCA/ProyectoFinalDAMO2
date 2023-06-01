@@ -80,8 +80,6 @@ class VendedorMenuFragment : Fragment() {
                 val precio = productoJson.get("precio").asFloat
                 val descripcion = productoJson.get("descripcion").asString
 
-
-
                 val idTienda = sesionVendedor.idTienda
 
                 val disponibilidad = productoJson.get("disponibilidad").asInt

@@ -2,8 +2,12 @@ package com.fao.orderfy.presentacion.fragmentos
 
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.VectorDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
@@ -14,8 +18,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -31,6 +37,7 @@ import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.Locale
 import com.fao.orderfy.datos.utils.TimePickerFragment
+import java.io.ByteArrayOutputStream
 
 
 class VendedorLocalFragment : Fragment() {
@@ -39,6 +46,7 @@ class VendedorLocalFragment : Fragment() {
     private lateinit var sesionVendedor: Vendedor
     private lateinit var tiendaVendedor: Tienda
     private lateinit var launcher: ActivityResultLauncher<String>
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,9 +59,7 @@ class VendedorLocalFragment : Fragment() {
         return fbinding.root
     }
 
-
-
-
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun iniciar() {
         cargarImagen()
         cargarTienda()
@@ -84,11 +90,81 @@ class VendedorLocalFragment : Fragment() {
         }
         fbinding.etHoraCierre.setOnClickListener{showTimePickerDialog2()}
         fbinding.etHoraApertura.setOnClickListener{showTimePickerDialog()}
+
         fbinding.btnGuardar.setOnClickListener {
-            fbinding.etHoraApertura.setText(tiendaVendedor.horaApertura.toString())
-            fbinding.etHoraCierre.setText(tiendaVendedor.horaCierre.toString())
-            fbinding.etNombreLocal.setText(tiendaVendedor.nombre)
+            guardarTienda()
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun guardarTienda() {
+        if(validarInputs() && validarHorarios()){
+            tiendaVendedor.nombre = fbinding.etNombreLocal.text.toString().trim()
+            tiendaVendedor.horaApertura = convertStringToTime(fbinding.etHoraApertura.text.toString().trim())!!
+            tiendaVendedor.horaCierre = convertStringToTime(fbinding.etHoraCierre.text.toString().trim())!!
+            when (fbinding.ivLogo.drawable) {
+                is BitmapDrawable -> {
+                    val bitmap: Bitmap = (fbinding.ivLogo.drawable as BitmapDrawable).bitmap
+                    val stream = ByteArrayOutputStream()
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+                    val byteArray: ByteArray = stream.toByteArray()
+                    tiendaVendedor.logo = byteArray
+                }
+                is VectorDrawable -> {
+                    Log.w("VECTOR","VECTOR")
+                }
+                else -> throw IllegalArgumentException("Unsupported drawable type")
+            }
+            viewModelTienda.editarTienda(object : MainListener{
+                override fun onSuccess(response: JsonArray) {
+                    if(validarJsonArray(response)){
+                        Toast.makeText(requireContext(), "Guardado exitosamente", Toast.LENGTH_SHORT).show()
+                        Navigation.findNavController(fbinding.root).navigate(R.id.action_vendedorLocalFragment_to_vendedorHomeFragment)
+                    }
+                }
+
+                override fun onFailure(error: String) {
+                    Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
+                }
+            },tiendaVendedor)
+        }
+    }
+
+    private fun validarHorarios(): Boolean {
+        val apertura = convertStringToTime(fbinding.etHoraApertura.text.toString())!!
+        val cierre = convertStringToTime(fbinding.etHoraCierre.text.toString())!!
+        if(apertura.hours <= cierre.hours) {
+            if(apertura.hours == cierre.hours) {
+                if(apertura.minutes < cierre.minutes) {
+                    return true
+                }
+                Toast.makeText(requireContext(), "La hora de apertura no puede ser mayor a la de cierre", Toast.LENGTH_SHORT).show()
+                return false
+            }
+            return true
+        }
+        Toast.makeText(requireContext(), "La hora de apertura no puede ser mayor a la de cierre", Toast.LENGTH_SHORT).show()
+        return false
+    }
+
+    private fun validarInputs(): Boolean {
+        if (fbinding.etNombreLocal.text.toString() == "") {
+            Toast.makeText(requireActivity(), "Escriba el nombre del local", Toast.LENGTH_SHORT)
+                .show()
+            return false
+        } else if (fbinding.etHoraCierre.text.toString() == "") {
+            Toast.makeText(requireActivity(), "Escriba la hora de cierre", Toast.LENGTH_SHORT)
+                .show()
+            return false
+        } else if (fbinding.etHoraApertura.text.toString() == "") {
+            Toast.makeText(
+                requireActivity(),
+                "Escriba la hora de apertura",
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
+        return true
     }
 
     private fun cargarImagen(){
@@ -106,7 +182,6 @@ class VendedorLocalFragment : Fragment() {
                     .into(fbinding.ivLogo)
             }
         }
-
         fbinding.ivLogo.setOnClickListener {
             launcher.launch("image/*")
         }
@@ -137,6 +212,9 @@ class VendedorLocalFragment : Fragment() {
                     Log.wtf("TIENDA: ", "${tienda.nombre} y ${tienda.estado}")
                     tiendaVendedor = tienda
                     setBotonCerrar()
+                    fbinding.etHoraApertura.setText(tiendaVendedor.horaApertura.toString())
+                    fbinding.etHoraCierre.setText(tiendaVendedor.horaCierre.toString())
+                    fbinding.etNombreLocal.setText(tiendaVendedor.nombre)
                 } else {
                     tiendaVendedor = Tienda(0, "", ByteArray(0), Time(1), Time(1), false)
                     Toast.makeText(
@@ -224,6 +302,7 @@ class VendedorLocalFragment : Fragment() {
             null
         }
     }
+
 
     private fun showTimePickerDialog2() {
         val timePicker = TimePickerFragment {onTimeSelected2(it)}

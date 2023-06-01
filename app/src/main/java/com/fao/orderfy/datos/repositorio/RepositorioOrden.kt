@@ -34,16 +34,16 @@ class RepositorioOrden(val daoOrden: DaoOrden) {
     }
 
     // SOLO REMOTO
-    fun consultarOrdenTiendaListaRemoto(listener: MainListener, tienda: Tienda) {
+    fun consultarOrdenTiendaListaRemoto(listener: MainListener, idTienda: Int) {
         val api: ApiOrden = RetrofitService.getApi(ApiOrden::class.java)
-        val service = api.consultarOrdenTiendaLista(tienda.idTienda)
+        val service = api.consultarOrdenTiendaLista(idTienda)
         requestMethods.request(service, listener)
     }
 
     // SOLO REMOTO
-    fun consultarOrdenTiendaPendienteRemoto(listener: MainListener, tienda: Tienda) {
+    fun consultarOrdenTiendaPendienteRemoto(listener: MainListener, idTienda: Int) {
         val api: ApiOrden = RetrofitService.getApi(ApiOrden::class.java)
-        val service = api.consultarOrdenTiendaPendiente(tienda.idTienda)
+        val service = api.consultarOrdenTiendaPendiente(idTienda)
         requestMethods.request(service, listener)
     }
 
