@@ -27,7 +27,11 @@
         android:id="@+id/vendedorOrdenEspFragment"
         android:name="com.fao.orderfy.presentacion.fragmentos.VendedorOrdenEspFragment"
         android:label="fragment_vendedor_orden_esp"
-        tools:layout="@layout/fragment_vendedor_orden_esp" />
+        tools:layout="@layout/fragment_vendedor_orden_esp" >
+        <argument
+            android:name="orden"
+            app:argType="com.fao.orderfy.datos.Entidades.Orden" />
+    </fragment>
     <fragment
         android:id="@+id/vendedorOrdenesFragment"
         android:name="com.fao.orderfy.presentacion.fragmentos.VendedorOrdenesFragment"
@@ -53,7 +57,11 @@
         android:id="@+id/vendedorLocalFragment"
         android:name="com.fao.orderfy.presentacion.fragmentos.VendedorLocalFragment"
         android:label="fragment_vendedor_local"
-        tools:layout="@layout/fragment_vendedor_local" />
+        tools:layout="@layout/fragment_vendedor_local" >
+        <action
+            android:id="@+id/action_vendedorLocalFragment_to_vendedorHomeFragment"
+            app:destination="@id/vendedorHomeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/vendedorAgregarProdFragment"
         android:name="com.fao.orderfy.presentacion.fragmentos.VendedorAgregarProdFragment"

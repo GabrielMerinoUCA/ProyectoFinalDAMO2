@@ -2,6 +2,8 @@ package com.fao.orderfy.presentacion.viewmodel
 
 import android.app.Application
 import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.fao.orderfy.datos.Entidades.Tienda
@@ -29,6 +31,7 @@ class ViewModelTienda(application: Application): AndroidViewModel(application) {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun editarTienda(listener: MainListener, tienda: Tienda) {
         repositorio.editarTiendaRemoto(listener, tienda)
     }

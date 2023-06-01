@@ -31,16 +31,16 @@ class ViewModelOrden(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun consultarOrdenTiendaLista(listener: MainListener, tienda: Tienda) {
-        repositorio.consultarOrdenTiendaListaRemoto(listener, tienda)
+    fun consultarOrdenTiendaLista(listener: MainListener, idTienda: Int) {
+        repositorio.consultarOrdenTiendaListaRemoto(listener, idTienda)
     }
 
     fun consultarOrdenTiendaEntregada(listener: MainListener, tienda: Tienda) {
         repositorio.consultarOrdenTiendaEntregadaRemoto(listener, tienda)
     }
 
-    fun consultarOrdenTiendaPendiente(listener: MainListener, tienda: Tienda) {
-        repositorio.consultarOrdenTiendaPendienteRemoto(listener, tienda)
+    fun consultarOrdenTiendaPendiente(listener: MainListener, idTienda: Int) {
+        repositorio.consultarOrdenTiendaPendienteRemoto(listener, idTienda)
     }
 
     fun cambiarEstadoOrdenLista(listener: MainListener, orden: Orden) {

@@ -53,15 +53,11 @@
     <TextView
         android:id="@+id/tvTiempoPreparacion"
         android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
         android:hint="4:45 PM"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/ivCazuela"
-        app:layout_constraintTop_toBottomOf="@+id/tvEnPreparacion"
-        app:layout_constraintVertical_bias="0.02" />
+        app:layout_constraintStart_toStartOf="@+id/tvEstadoOrden"
+        app:layout_constraintTop_toBottomOf="@+id/tvEstadoOrden" />
 
     <TextView
         android:id="@+id/tvCodigo"
@@ -69,12 +65,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:hint="#152353"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.373"
         app:layout_constraintStart_toEndOf="@+id/ivCazuela"
-        app:layout_constraintTop_toBottomOf="@+id/tvEstadoOrden"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintTop_toTopOf="@+id/tvTiempoPreparacion" />
 
     <TextView
         android:id="@+id/tvProducto"

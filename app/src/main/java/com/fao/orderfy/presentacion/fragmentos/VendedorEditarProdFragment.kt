@@ -51,6 +51,7 @@ class VendedorEditarProdFragment : Fragment() {
         return fbinding.root
     }
 
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun iniciar() {
 
@@ -195,6 +196,7 @@ class VendedorEditarProdFragment : Fragment() {
         }
         return false
     }
+
 
 
 

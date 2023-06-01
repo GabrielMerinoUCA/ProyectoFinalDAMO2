@@ -66,9 +66,10 @@ class IniciarSesionVendedorFragment : Fragment() {
                     for (x in vendedores) {
                         if (x.nombreUsuario == vendedor.nombreUsuario && x.pwd == vendedor.pwd) {
                             sesion = x
+                            intent.putExtra("SesionVendedor", sesion)
                         }
                     }
-                    intent.putExtra("SesionVendedor", sesion)
+
                     startActivity(intent)
 
                 } else if (valor.asString == "admin-true") {

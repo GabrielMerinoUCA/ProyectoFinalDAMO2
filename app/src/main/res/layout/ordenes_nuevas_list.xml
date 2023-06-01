@@ -10,6 +10,7 @@
     android:layout_marginTop="10dp"
     android:layout_marginRight="28dp"
     android:background="@drawable/list_orden_rect"
+    android:id="@+id/constraintOrdenPendiente"
     >
 
     <TextView
@@ -101,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="Hora estimada"
+        android:text="Hora Pedido"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.885"

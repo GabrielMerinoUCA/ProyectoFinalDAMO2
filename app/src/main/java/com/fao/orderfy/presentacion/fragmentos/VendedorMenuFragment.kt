@@ -80,9 +80,6 @@ class VendedorMenuFragment : Fragment() {
                 val precio = productoJson.get("precio").asFloat
                 val descripcion = productoJson.get("descripcion").asString
 
-                val imagenString = productoJson.get("imagen").asString
-                val imagenByteArray = Base64.decode(imagenString, Base64.DEFAULT)
-
                 val idTienda = sesionVendedor.idTienda
 
                 val disponibilidad = productoJson.get("disponibilidad").asInt
@@ -99,7 +96,7 @@ class VendedorMenuFragment : Fragment() {
                         id,
                         nombre,
                         precio,
-                        imagenByteArray,
+                        ByteArray(0),
                         descripcion,
                         disponibilidadBool,
                         tiempoEstimado,
