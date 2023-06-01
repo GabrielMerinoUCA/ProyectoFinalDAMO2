@@ -40,18 +40,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="4:45 PM"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="133dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/ivCazuela"
+        app:layout_constraintStart_toStartOf="@+id/tvTitulo"
+        app:layout_constraintTop_toTopOf="@+id/ivCazuela" />
 
     <TextView
         android:id="@+id/tvCodigo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
         android:hint="#152353"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivCazuela"
-        app:layout_constraintTop_toTopOf="@+id/tvTiempoPreparacion" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvTiempoPreparacion"
+        app:layout_constraintEnd_toEndOf="@+id/tvTitulo"
+        app:layout_constraintTop_toTopOf="@+id/tvTiempoPreparacion"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvProducto"
