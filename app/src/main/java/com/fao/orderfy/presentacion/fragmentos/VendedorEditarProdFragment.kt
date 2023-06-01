@@ -88,7 +88,6 @@ class VendedorEditarProdFragment : Fragment() {
 
                 override fun onFailure(error: String) {
                     Toast.makeText(requireActivity(), "Error", Toast.LENGTH_SHORT).show()
-                    Log.wtf("VendedorEditarProdFragment", error)
                 }
 
             }, producto)
