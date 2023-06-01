@@ -1,5 +1,9 @@
 # ProyectoFinalDAMO2
 
+## Historias de usuario
+
+Link: https://docs.google.com/spreadsheets/d/1h7x7wZ__lfOjbYJRchQ6EKCOQWDoF0S2arCL-spl4wg/edit?usp=sharing
+
 ## API
 
 Dominio de la API https://damo2-api.herokuapp.com/
