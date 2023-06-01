@@ -31,6 +31,9 @@
         <argument
             android:name="orden"
             app:argType="com.fao.orderfy.datos.Entidades.Orden" />
+        <action
+            android:id="@+id/action_vendedorOrdenEspFragment_to_vendedorHomeFragment"
+            app:destination="@id/vendedorHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/vendedorOrdenesFragment"

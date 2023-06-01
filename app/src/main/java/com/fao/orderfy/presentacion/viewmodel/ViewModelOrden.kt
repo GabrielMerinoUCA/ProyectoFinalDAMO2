@@ -35,8 +35,8 @@ class ViewModelOrden(application: Application): AndroidViewModel(application) {
         repositorio.consultarOrdenTiendaListaRemoto(listener, idTienda)
     }
 
-    fun consultarOrdenTiendaEntregada(listener: MainListener, tienda: Tienda) {
-        repositorio.consultarOrdenTiendaEntregadaRemoto(listener, tienda)
+    fun consultarOrdenTiendaEntregada(listener: MainListener, idTienda: Int) {
+        repositorio.consultarOrdenTiendaEntregadaRemoto(listener, idTienda)
     }
 
     fun consultarOrdenTiendaPendiente(listener: MainListener, idTienda: Int) {
