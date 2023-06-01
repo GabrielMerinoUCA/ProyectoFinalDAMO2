@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
         if (RetrofitService.isServerReachable(requireContext())) {
             coroutineScope.launch {
                 cargarDatosCliente(requireContext())
-                obtenerDatosTienda(requireContext())
+               obtenerDatosTienda(requireContext())
             }
         } else {
 
