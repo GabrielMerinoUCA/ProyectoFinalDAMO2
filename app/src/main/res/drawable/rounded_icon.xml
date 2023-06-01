@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/logo_background" />
+    <item>
+        <bitmap android:src="@mipmap/logo_foreground"
+            android:gravity="center"
+            android:shape="rectangle">
+            <corners android:radius="20dp" /> <!-- Ajusta el valor del radio de las esquinas según tus necesidades -->
+        </bitmap>
+    </item>
+</layer-list>
