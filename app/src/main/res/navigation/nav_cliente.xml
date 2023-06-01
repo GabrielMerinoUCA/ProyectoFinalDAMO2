@@ -27,7 +27,12 @@
         tools:layout="@layout/fragment_cliente_local_vista" >
         <action
             android:id="@+id/action_clienteLocalVistaFragment_to_platilloFragment"
-            app:destination="@id/platilloFragment" />
+            app:destination="@id/platilloFragment"
+            />
+        <argument
+            android:name="tienda"
+            app:argType="com.fao.orderfy.datos.Entidades.Tienda" />
+
     </fragment>
     <fragment
         android:id="@+id/perfilFragment"
@@ -60,12 +65,28 @@
         <action
             android:id="@+id/action_platilloFragment_to_ordenFragment"
             app:destination="@id/ordenFragment" />
+        <argument
+            android:name="tienda"
+            app:argType="com.fao.orderfy.datos.Entidades.Tienda" />
+        <argument
+            android:name="producto"
+            app:argType="com.fao.orderfy.datos.Entidades.Producto" />
     </fragment>
     <fragment
         android:id="@+id/ordenEspecificaFragment"
         android:name="com.fao.orderfy.presentacion.fragmentos.OrdenEspecificaFragment"
         android:label="fragment_orden_especifica"
-        tools:layout="@layout/fragment_orden_especifica" />
+        tools:layout="@layout/fragment_orden_especifica" >
+        <argument
+            android:name="orden"
+            app:argType="com.fao.orderfy.datos.Entidades.Orden" />
+        <argument
+            android:name="producto"
+            app:argType="com.fao.orderfy.datos.Entidades.Producto" />
+        <argument
+            android:name="tienda"
+            app:argType="com.fao.orderfy.datos.Entidades.Tienda" />
+    </fragment>
     <fragment
         android:id="@+id/ordenFragment"
         android:name="com.fao.orderfy.presentacion.fragmentos.OrdenFragment"
@@ -74,6 +95,15 @@
         <action
             android:id="@+id/action_ordenFragment_to_ordenRealizadaFragment"
             app:destination="@id/ordenRealizadaFragment" />
+        <argument
+            android:name="producto"
+            app:argType="com.fao.orderfy.datos.Entidades.Producto" />
+        <argument
+            android:name="tienda"
+            app:argType="com.fao.orderfy.datos.Entidades.Tienda" />
+        <argument
+            android:name="cantidad"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/ordenRealizadaFragment"
@@ -83,10 +113,35 @@
         <action
             android:id="@+id/action_ordenRealizadaFragment_to_ordenEnCursoFragment"
             app:destination="@id/ordenEnCursoFragment" />
+        <argument
+            android:name="producto"
+            app:argType="com.fao.orderfy.datos.Entidades.Producto" />
+        <argument
+            android:name="tienda"
+            app:argType="com.fao.orderfy.datos.Entidades.Tienda" />
+        <argument
+            android:name="orden"
+            app:argType="com.fao.orderfy.datos.Entidades.Orden" />
+        <argument
+            android:name="subTotal"
+            app:argType="float" />
+        <argument
+            android:name="tarifaServicio"
+            app:argType="integer" />
+        <argument
+            android:name="total"
+            app:argType="float" />
     </fragment>
     <fragment
         android:id="@+id/ordenEnCursoFragment"
         android:name="com.fao.orderfy.presentacion.fragmentos.OrdenEnCursoFragment"
         android:label="fragment_orden_en_curso"
-        tools:layout="@layout/fragment_orden_en_curso" />
+        tools:layout="@layout/fragment_orden_en_curso" >
+        <argument
+            android:name="tienda"
+            app:argType="com.fao.orderfy.datos.Entidades.Tienda" />
+        <argument
+            android:name="producto"
+            app:argType="com.fao.orderfy.datos.Entidades.Producto" />
+    </fragment>
 </navigation>

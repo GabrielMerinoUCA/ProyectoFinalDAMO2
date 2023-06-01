@@ -6,13 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation
+import android.content.Intent
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.fao.orderfy.R
 import com.fao.orderfy.databinding.ActivityClienteBinding
+import com.fao.orderfy.datos.Entidades.Cliente
+import com.fao.orderfy.datos.Entidades.Vendedor
 
 class ClienteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityClienteBinding
+    private lateinit var sesionCliente: Cliente
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityClienteBinding.inflate(layoutInflater)
@@ -22,7 +26,12 @@ class ClienteActivity : AppCompatActivity() {
 
     private fun inicio() {
         configurarSlideBar()
+        @Suppress("DEPRECATION")
+        sesionCliente = intent.getParcelableExtra<Cliente>("SesionCliente")!!
+        ClienteActivity.sesionClienteGlobal = sesionCliente
     }
+
+
 
     private fun configurarSlideBar() {
 
@@ -66,5 +75,8 @@ class ClienteActivity : AppCompatActivity() {
             binding.slidingPaneLayout.closePane()
             binding.slidingPaneLayout.visibility = View.INVISIBLE
         }
+    }
+    companion object{
+        var sesionClienteGlobal: Cliente? = null
     }
 }

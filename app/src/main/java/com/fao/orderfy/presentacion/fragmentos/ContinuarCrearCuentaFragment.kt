@@ -72,12 +72,10 @@ class ContinuarCrearCuentaFragment : Fragment() {
 
     private fun registrarCliente() {
 
-        var bd = BD.getDatabase(requireContext()).DaoCliente()
         var nombre = requireArguments().getString("nombreCliente").toString()
         var apellido = requireArguments().getString("apellidoCliente").toString()
         var usuario = fbinding.etUserName.text.toString()
         var pwd = fbinding.etPassword.text.toString()
-        var confirmPWD = fbinding.etConfirmPassword.text.toString()
         val cliente = Cliente(0, nombre, apellido, usuario, pwd)
 
         var viewModelCliente = ViewModelProvider(this)[ViewModelCliente::class.java]

@@ -45,4 +45,8 @@ interface DaoCliente {
     @Query("SELECT COUNT(*) FROM cliente WHERE nombreUsuario = :nombreUsuario")
     suspend fun contarUsuarioPorNombre(nombreUsuario: String): Int
 
+    @Query("SELECT idCliente FROM cliente WHERE nombreUsuario = :nombreUsuario")
+    suspend fun obtenerIdPorNombreUsuario(nombreUsuario: String): Int
+
+
 }
