@@ -98,7 +98,14 @@ class ClienteLocalVistaFragment : Fragment(), ClienteVistaProdLocalListener {
                                 logoString?.let { Base64.decode(it, Base64.DEFAULT) }
                             val descripcion = jsonObject.get("descripcion")?.asString
                             val idTienda = jsonObject.get("idTienda")?.asString?.toInt()
-                            val disponibilidad = jsonObject.get("disponibilidad")?.asBoolean
+                            var disponibilidadInt = jsonObject.get("disponibilidad")?.asInt
+                            var disponibilidad: Boolean = false
+                                if (disponibilidadInt == 1){
+                                    disponibilidad = true
+                                }else if(disponibilidadInt == 0){
+                                    disponibilidad = false
+                                }
+
                             val tiempoEstimado = jsonObject.get("tiempoEstimado")?.asString?.toInt()
 
                             if (id != null && nombre != null && precio != null && logoByteArray != null && descripcion != null && idTienda != null && disponibilidad != null && tiempoEstimado != null) {
@@ -112,7 +119,10 @@ class ClienteLocalVistaFragment : Fragment(), ClienteVistaProdLocalListener {
                                     tiempoEstimado,
                                     idTienda
                                 )
-                                listaProd.add(producto!!)
+                                if(disponibilidad){
+                                    listaProd.add(producto!!)
+                                }
+
                             } else {
                                 null
                             }

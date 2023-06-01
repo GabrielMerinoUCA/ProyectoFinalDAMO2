@@ -30,6 +30,7 @@ import com.google.gson.JsonParser
 import java.sql.Time
 import java.text.SimpleDateFormat
 import android.os.Process
+import android.util.Log
 import androidx.navigation.fragment.findNavController
 
 
@@ -55,7 +56,7 @@ class MisOrdenesFragment : Fragment(), ClienteVistaMisOrdenesListener {
         sListaProducto.clear()
         sListaTienda.clear()
         listaID.clear()
-        iniciar()
+        //iniciar()
     }
 
     override fun onCreateView(
@@ -68,7 +69,7 @@ class MisOrdenesFragment : Fragment(), ClienteVistaMisOrdenesListener {
         listaProducto = mutableListOf()
 
 
-        //iniciar()
+        iniciar()
         return fbinding.root
     }
 
@@ -89,7 +90,7 @@ class MisOrdenesFragment : Fragment(), ClienteVistaMisOrdenesListener {
                     if (response != null) {
                         val jsonArrayString = response.toString()
                         val jsonArray = JsonParser.parseString(jsonArrayString).asJsonArray
-
+                        listaOrden.clear()
                         listaOrden.addAll(jsonArray.map { element ->
                             val jsonObject = element.asJsonObject
                             val id = jsonObject.get("id").asString.toInt()
@@ -117,7 +118,6 @@ class MisOrdenesFragment : Fragment(), ClienteVistaMisOrdenesListener {
                             listaID.add(idProducto)
                             orden
                         })
-
                         listaProd.forEach { producto ->
                             listaID.forEach { idProducto ->
                                 if (producto.idProducto == idProducto) {
@@ -127,6 +127,7 @@ class MisOrdenesFragment : Fragment(), ClienteVistaMisOrdenesListener {
                                     listaTienda.forEach { tienda ->
                                         if (tienda.idTienda == idTiendaS) {
                                             sListaTienda.add(tienda)
+
                                         }
                                     }
                                 }
@@ -134,8 +135,8 @@ class MisOrdenesFragment : Fragment(), ClienteVistaMisOrdenesListener {
 
                             cargarRecycler(listaOrden, sListaProducto, sListaTienda)
 
-
                         }
+
                     } else {
                         Toast.makeText(activity, "No hay Ordenes", Toast.LENGTH_LONG).show()
                     }
@@ -152,9 +153,9 @@ class MisOrdenesFragment : Fragment(), ClienteVistaMisOrdenesListener {
     }
 
     private fun cargarRecycler(
-        listaOrden: MutableList<Orden>,
-        sListaProducto: MutableList<Producto>,
-        sListaTienda: MutableList<Tienda>
+        listaOrden: List<Orden>,
+        sListaProducto: List<Producto>,
+        sListaTienda: List<Tienda>
     ) {
         adatadorMisOrdenes = ClienteVistaMisOrdenesAdapter(
             listaOrden,
@@ -211,15 +212,25 @@ class MisOrdenesFragment : Fragment(), ClienteVistaMisOrdenesListener {
     }
 
     private fun cargarDatosProductoParaTodasLasTiendas(listaTienda: List<Tienda>) {
-        listaProducto.clear()
-        listaTienda.forEach { tienda ->
-            cargarDatosProducto(tienda.idTienda)
-        }
+        val totalTiendas = listaTienda.size
+        var tiendasProcesadas = 0
 
+        listaTienda.forEach { tienda ->
+            cargarDatosProducto(tienda.idTienda) {
+
+                tiendasProcesadas++
+
+                if (tiendasProcesadas == totalTiendas) {
+
+                    cargarDatosOrdenes(listaTienda, listaProducto)
+                }
+            }
+
+    }
     }
 
 
-    private fun cargarDatosProducto( idTienda: Int) {
+    fun cargarDatosProducto( idTienda: Int, completion: () -> Unit) {
         val activity = activity
         if (isAdded && activity != null) {
             val viewModelProducto =
@@ -260,12 +271,13 @@ class MisOrdenesFragment : Fragment(), ClienteVistaMisOrdenesListener {
                             }
                         })
 
-                        cargarDatosOrdenes(listaTienda, listaProducto)
+                        //cargarDatosOrdenes(listaTienda, listaProducto)
 
 
                     } else {
                         Toast.makeText(activity, "No hay Producto", Toast.LENGTH_LONG).show()
                     }
+                    completion()
 
                 }
 

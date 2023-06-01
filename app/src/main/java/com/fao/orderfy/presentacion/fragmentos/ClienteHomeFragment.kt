@@ -104,17 +104,30 @@ class ClienteHomeFragment : Fragment(), ClienteVistaTiendasListener {
                         val jsonObject = element.asJsonObject
                         val logoBase64 = jsonObject.get("logo").asString
                         val logoByteArray = Base64.decode(logoBase64, Base64.DEFAULT)
+                        val estadoInt =  jsonObject.get("estado").asInt
+                        var estado = false
+                        if (estadoInt == 1){
+                            estado = true
+                        }else if(estadoInt == 0){
+                            estado = false
+                        }
                         val tienda = Tienda(
                             idTienda = jsonObject.get("id").asString.toInt(),
                             nombre = jsonObject.get("nombre").asString,
                             logo = logoByteArray,
                             horaApertura = convertStringToTime(jsonObject.get("horaApertura").asString)!!,
                             horaCierre = convertStringToTime(jsonObject.get("horaCierre").asString)!!,
-                            estado = jsonObject.get("estado").asBoolean
+                            estado
+
                         )
+                         Log.wtf("Bollean", "${tienda.estado}")
                         // Agregar el objeto a la lista
-                        listaTienda.add(tienda)
+                        if (estado){
+                            listaTienda.add(tienda)
+                        }
+
                     }
+                    Log.wtf("Lista: ", "${listaTienda.size}")
                     verificarLista()
                 }else{
                     Toast.makeText(activity, "No hay Tiendas", Toast.LENGTH_LONG).show()
