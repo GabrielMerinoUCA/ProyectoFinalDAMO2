@@ -25,7 +25,10 @@ class IniciarSesionVendedorFragment : Fragment() {
     private lateinit var fbinding: FragmentIniciarSesionVendedorBinding
     private lateinit var viewModelVendedor: ViewModelVendedor
     private var vendedores: ArrayList<Vendedor> = ArrayList()
-
+    override fun onResume() {
+        super.onResume()
+        obtenerVendedores()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -66,9 +69,12 @@ class IniciarSesionVendedorFragment : Fragment() {
                     for (x in vendedores) {
                         if (x.nombreUsuario == vendedor.nombreUsuario && x.pwd == vendedor.pwd) {
                             sesion = x
-                            intent.putExtra("SesionVendedor", sesion)
+
                         }
                     }
+
+
+                    intent.putExtra("SesionVendedor", sesion)
 
                     startActivity(intent)
 

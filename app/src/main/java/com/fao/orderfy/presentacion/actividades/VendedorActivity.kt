@@ -18,6 +18,8 @@ class VendedorActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityVendedorBinding
     private lateinit var sesionVendedor: Vendedor
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityVendedorBinding.inflate(layoutInflater)
