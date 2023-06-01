@@ -30,8 +30,8 @@ class VendedorHomeFragment : Fragment() {
     private lateinit var fbinding: FragmentVendedorHomeBinding
     private lateinit var sesionVendedor: Vendedor
     private lateinit var viewModelOrden: ViewModelOrden
-    private val ordenPendiente = ArrayList<Orden>()
-    private val ordenLista = ArrayList<Orden>()
+    private lateinit var ordenPendiente: ArrayList<Orden>
+    private lateinit var ordenLista: ArrayList<Orden>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +46,8 @@ class VendedorHomeFragment : Fragment() {
     }
 
     private fun iniciar() {
+        ordenPendiente = ArrayList()
+        ordenLista = ArrayList()
         obtenerOrdenesPendientes()
         obtenerOrdenesListas()
     }
@@ -68,9 +70,9 @@ class VendedorHomeFragment : Fragment() {
 
     private fun cargarRecyclerOrdenesListas() {
         fbinding.rvOrdenesListas.layoutManager = LinearLayoutManager(context)
-        fbinding.rvOrdenesListas.adapter = OrdenListaListAdapter(ordenPendiente,this)
+        fbinding.rvOrdenesListas.adapter = OrdenListaListAdapter(ordenLista,this)
         fbinding.rvOrdenesListas.setHasFixedSize(true)
-        if(ordenPendiente.size > 0){
+        if(ordenLista.size > 0){
             fbinding.tvAvisoOrdenesListas.visibility = View.GONE
         }
         else{
@@ -164,7 +166,7 @@ class VendedorHomeFragment : Fragment() {
         } while (i < length)
     }
 
-    fun convertStringToTime(timeString: String): Time? {
+    private fun convertStringToTime(timeString: String): Time? {
         val format = SimpleDateFormat("HH:mm:ss")
         return try {
             val date = format.parse(timeString)

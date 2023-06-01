@@ -76,5 +76,8 @@ class VendedorActivity : AppCompatActivity() {
             binding.slidingPaneLayout.closePane()
             binding.slidingPaneLayout.visibility = View.INVISIBLE
         }
+        binding.btnCerrarSesion.setOnClickListener {
+            finish()
+        }
     }
 }

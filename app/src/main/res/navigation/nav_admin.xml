@@ -38,5 +38,9 @@
         android:id="@+id/administradorVistaSolicitudEspFragment"
         android:name="com.fao.orderfy.presentacion.fragmentos.AdministradorVistaSolicitudEspFragment"
         android:label="fragment_administrador_vista_solicitud_esp"
-        tools:layout="@layout/fragment_administrador_vista_solicitud_esp" />
+        tools:layout="@layout/fragment_administrador_vista_solicitud_esp" >
+        <argument
+            android:name="registro"
+            app:argType="com.fao.orderfy.datos.Entidades.Registro" />
+    </fragment>
 </navigation>
