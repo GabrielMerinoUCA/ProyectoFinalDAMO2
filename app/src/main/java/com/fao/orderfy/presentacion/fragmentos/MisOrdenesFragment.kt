@@ -72,28 +72,10 @@ class MisOrdenesFragment : Fragment(), ClienteVistaMisOrdenesListener {
         return fbinding.root
     }
 
-    fun obtenerMemoriaProcesoAndroid(context: Context, pid: Int): Long {
-        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val memoryInfo = activityManager.getProcessMemoryInfo(intArrayOf(pid))
-        if (memoryInfo.isNotEmpty()) {
-            return memoryInfo[0].totalPss.toLong()
-        }
-        return -1L
-    }
 
-    fun obtenerMemoriaDisponibleAndroid(context: Context): Long {
-        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val memoryInfo = ActivityManager.MemoryInfo()
-        activityManager.getMemoryInfo(memoryInfo)
-        return memoryInfo.availMem
-    }
 
     private fun iniciar() {
-        val pid = Process.myPid()
         cargarDatosTienda()
-
-        obtenerMemoriaProcesoAndroid(requireContext(), pid)
-        Toast.makeText(requireContext(), "Memoriadisponible: ${obtenerMemoriaDisponibleAndroid(requireContext())}, Memoria Proceso Android: ${obtenerMemoriaProcesoAndroid(requireContext(), pid)}", Toast.LENGTH_LONG).show()
 
     }
 

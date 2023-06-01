@@ -27,7 +27,7 @@ class ClienteActivity : AppCompatActivity() {
         configurarSlideBar()
         @Suppress("DEPRECATION")
         sesionCliente = intent.getParcelableExtra<Cliente>("SesionCliente")!!
-        ClienteActivity.sesionClienteGlobal = sesionCliente
+        sesionClienteGlobal = sesionCliente
     }
 
 
@@ -56,25 +56,22 @@ class ClienteActivity : AppCompatActivity() {
         }
 
         binding.btnMiPerfil.setOnClickListener {
-            if (RetrofitService.isServerReachable(this@ClienteActivity)) {
+            if (validarConexion()){
                 val navController = binding.fragmentContainerView2.findNavController()
-                navController.navigate(R.id.perfilFragment)
+                navController.navigate(R.id.misOrdenesFragment)
                 binding.slidingPaneLayout.closePane()
                 binding.slidingPaneLayout.visibility = View.INVISIBLE
-           } else {
-               Toast.makeText(this, "No tiene conexion a internet", Toast.LENGTH_LONG).show()
             }
-
 
         }
         binding.btnMisOrdenes.setOnClickListener {
-            if (RetrofitService.isServerReachable(this@ClienteActivity) ){
+            if (validarConexion()){
                 val navController = binding.fragmentContainerView2.findNavController()
                 navController.navigate(R.id.misOrdenesFragment)
                 binding.slidingPaneLayout.closePane()
                 binding.slidingPaneLayout.visibility = View.INVISIBLE
             } else {
-               Toast.makeText(this, "No tiene conexion a internet", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "No tiene conexion a internet", Toast.LENGTH_LONG).show()
             }
 
         }
@@ -87,6 +84,9 @@ class ClienteActivity : AppCompatActivity() {
         binding.btnCerrarSesion.setOnClickListener {
             finish()
         }
+    }
+    private fun validarConexion(): Boolean {
+        return RetrofitService.isServerReachable(this@ClienteActivity)
     }
     companion object{
         var sesionClienteGlobal: Cliente? = null
