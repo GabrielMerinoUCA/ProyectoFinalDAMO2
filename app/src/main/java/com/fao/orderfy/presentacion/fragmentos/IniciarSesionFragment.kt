@@ -44,7 +44,14 @@ class IniciarSesionFragment : Fragment() {
     private var clientesList: MutableList<Cliente> = mutableListOf()
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
 
-
+    override fun onResume() {
+        super.onResume()
+        if (RetrofitService.isServerReachable(requireContext())) {
+            cargarDatosCliente(requireContext())
+        } else {
+            cargarDatosLocal()
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,11 +63,6 @@ class IniciarSesionFragment : Fragment() {
     }
 
     private fun inicio() {
-        if (RetrofitService.isServerReachable(requireContext())) {
-            cargarDatosCliente(requireContext())
-        } else {
-            cargarDatosLocal()
-        }
 
         fbinding.tvRegistrar.setOnClickListener {
             Navigation.findNavController(fbinding.root)

@@ -85,6 +85,7 @@ class ClienteVistaMisOrdenesAdapter(
             tvTiempoEstimado.text = "$formattedHours:$formattedTiempoEstimado"
             if (orden.estado == 2) {
                 ivImagenEstado.setImageResource(R.drawable.bolsa)
+                tvEstadoOrden.setTextColor(Color.parseColor("#219549"))
                 tvEstadoOrden.text = "Entregado"
             } else if (orden.estado == 1) {
                 ivImagenEstado.setImageResource(R.drawable.cocinando)

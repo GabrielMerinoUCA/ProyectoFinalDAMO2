@@ -24,6 +24,8 @@ import com.fao.orderfy.R
 import com.fao.orderfy.presentacion.adapters.PopularProdAdapter
 import com.fao.orderfy.databinding.FragmentClienteHomeBinding
 import com.fao.orderfy.datos.Entidades.Tienda
+import com.fao.orderfy.datos.local.BD.BD
+import com.fao.orderfy.datos.remoto.api.RetrofitService
 import com.fao.orderfy.datos.utils.ClienteVistaTiendasListener
 import com.fao.orderfy.datos.utils.MainListener
 import com.fao.orderfy.presentacion.actividades.ClienteActivity
@@ -32,6 +34,9 @@ import com.fao.orderfy.presentacion.viewmodel.ViewModelCliente
 import com.fao.orderfy.presentacion.viewmodel.ViewModelTienda
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.json.JSONArray
 import java.sql.Time
 import java.text.SimpleDateFormat
@@ -42,6 +47,7 @@ class ClienteHomeFragment : Fragment(), ClienteVistaTiendasListener {
     private lateinit var fbinding: FragmentClienteHomeBinding
     var listaProd: MutableList<Producto> = mutableListOf()
     var listaTienda: MutableList<Tienda> = mutableListOf()
+    private val coroutineScope = CoroutineScope(Dispatchers.Main)
     lateinit var adatadorTienda: ClienteVistaTiendaAdapter
     lateinit var adatador: PopularProdAdapter
 
@@ -65,7 +71,22 @@ class ClienteHomeFragment : Fragment(), ClienteVistaTiendasListener {
             Navigation.findNavController(fbinding.root).navigate(R.id.action_clienteHomeFragment_to_clienteLocalVistaFragment)
         }*/
         fbinding.rvLocal.layoutManager = LinearLayoutManager(requireContext())
-        obtenerDatosTienda()
+        if (RetrofitService.isServerReachable(requireContext())) {
+            obtenerDatosTienda()
+        } else {
+            cargarCLientaLocal()
+
+        }
+
+    }
+
+    private fun cargarCLientaLocal(){
+        coroutineScope.launch {
+            listaTienda = BD.getDatabase(requireContext()).DaoTienda().consultarTienda()
+            verificarLista()
+
+        }
+
     }
 
     private fun obtenerDatosTienda() {
@@ -166,9 +187,13 @@ class ClienteHomeFragment : Fragment(), ClienteVistaTiendasListener {
     }
 
     override fun onSelectItemClick(tienda: Tienda) {
+        if (RetrofitService.isServerReachable(requireContext())) {
+            val action = ClienteHomeFragmentDirections.actionClienteHomeFragmentToClienteLocalVistaFragment(tienda)
+            findNavController().navigate(action)
+        } else {
+            Toast.makeText(activity, "No tiene conexion a internet", Toast.LENGTH_LONG).show()
+        }
 
-        val action = ClienteHomeFragmentDirections.actionClienteHomeFragmentToClienteLocalVistaFragment(tienda)
-        findNavController().navigate(action)
 
     }
 
