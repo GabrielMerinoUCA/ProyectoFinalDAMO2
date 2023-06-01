@@ -58,7 +58,7 @@ class ClienteActivity : AppCompatActivity() {
         binding.btnMiPerfil.setOnClickListener {
             if (validarConexion()){
                 val navController = binding.fragmentContainerView2.findNavController()
-                navController.navigate(R.id.misOrdenesFragment)
+                navController.navigate(R.id.perfilFragment)
                 binding.slidingPaneLayout.closePane()
                 binding.slidingPaneLayout.visibility = View.INVISIBLE
             }
