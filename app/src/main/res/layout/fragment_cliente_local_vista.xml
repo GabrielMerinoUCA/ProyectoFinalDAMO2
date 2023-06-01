@@ -48,7 +48,7 @@
             android:layout_gravity="center"
             />
         <TextView
-            android:id="@+id/papas_delta"
+            android:id="@+id/tvNombreLocal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -63,7 +63,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvProd"
             android:layout_width="409dp"
-            android:layout_height="406dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="57dp"
             android:layout_centerInParent="true"
             app:layout_constraintBottom_toBottomOf="parent"

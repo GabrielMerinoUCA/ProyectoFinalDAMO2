@@ -7,8 +7,6 @@
     tools:context=".presentacion.fragmentos.ClienteHomeFragment">
 
 
-
-
     <TextView
         android:id="@+id/tvSaludo"
         android:layout_width="wrap_content"
@@ -19,104 +17,45 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.110000014" />
-
-    <View
-        android:id="@+id/group_12"
-        android:layout_width="304dp"
-        android:layout_height="32dp"
-        android:background="@drawable/rectangulo_buscar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.173" />
-
-
-
-    <ImageView
-        android:id="@+id/ivPrueba"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baseline_search_24"
-        app:layout_constraintBottom_toBottomOf="@+id/group_12"
-        app:layout_constraintEnd_toEndOf="@+id/group_12"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="@+id/group_12"
-        app:layout_constraintTop_toTopOf="@+id/group_12" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="Buscar Local"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.182" />
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPopularProd"
-        android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:scrollbarStyle="outsideInset"
-        android:scrollbars="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/group_12"
-        app:layout_constraintVertical_bias="0.04000002" />
+        app:layout_constraintVertical_bias="0.042" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="608dp"
         android:text="Para Ti"
         android:textColor="@color/black"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.06"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvPopularProd"
-        app:layout_constraintVertical_bias="0.060000002" />
+        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvVerTodos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="612dp"
         android:text="Ver todos"
         android:textColor="#175676"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.828"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvPopularProd"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintHorizontal_bias="0.874"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvLocal"
-        android:layout_width="match_parent"
-        android:layout_height="406dp"
+        android:layout_width="405dp"
+        android:layout_height="579dp"
         android:layout_centerInParent="true"
-        android:layout_marginTop="57dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvPopularProd"
-        app:layout_constraintVertical_bias="0.29000002" />
-
+        android:layout_marginTop="136dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="3dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

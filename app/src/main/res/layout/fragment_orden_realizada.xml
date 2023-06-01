@@ -74,6 +74,7 @@
         android:layout_height="365dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/constraint"
         app:layout_constraintStart_toStartOf="parent"
         android:background="@drawable/iv_borde"
         app:layout_constraintTop_toTopOf="parent">
@@ -178,22 +179,22 @@
             app:layout_constraintVertical_bias="0.108" />
 
         <TextView
-            android:id="@+id/tvTotalText"
+            android:id="@+id/tvHoraEstimadaText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total"
+            android:text="Hora estimada"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.06"
+            app:layout_constraintHorizontal_bias="0.09"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTarifaServicioText"
             app:layout_constraintVertical_bias="0.15" />
 
         <TextView
-            android:id="@+id/tvTotal"
+            android:id="@+id/tvHoraEstimada"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="C$340"
+            android:hint="11:00:00"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.827"
@@ -213,10 +214,33 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTotal"
+            app:layout_constraintTop_toBottomOf="@id/tvHoraEstimada"
             app:layout_constraintVertical_bias="0.04000002" />
+
+        <TextView
+            android:id="@+id/tvPrecioTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:textSize="13sp"
+            android:textColor="#1434DF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTotalTitulo" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btnContinuar"
+        android:layout_width="192dp"
+        android:layout_height="38dp"
+        android:text="Continuar"
+        android:backgroundTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraint"
+        app:layout_constraintVertical_bias="0.26" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

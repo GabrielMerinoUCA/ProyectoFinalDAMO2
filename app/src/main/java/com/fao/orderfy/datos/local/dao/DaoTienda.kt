@@ -23,5 +23,17 @@ interface DaoTienda {
     @Query("UPDATE tienda SET estado = CASE WHEN estado = 0 THEN 1 ELSE 0 END WHERE idTienda = :idTienda")
     suspend fun cambiarEstadoTienda(idTienda: Int): Int
 
+    @Query("SELECT COUNT(*) FROM tienda")
+    suspend fun getCount(): Int
+
+    @Insert
+    suspend fun insertarTienda(tienda: Tienda)
+
+    @Query("SELECT COUNT(*) FROM tienda WHERE nombre = :tienda")
+    suspend fun contarUsuarioPorNombre(tienda: String): Int
+
+    @Query("SELECT idTienda FROM tienda WHERE nombre = :nombreTienda")
+    suspend fun obtenerIdPorNombreUsuario(nombreTienda: String): Int
+
 
 }

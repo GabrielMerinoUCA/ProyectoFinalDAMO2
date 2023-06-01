@@ -3,19 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="203dp"
+    android:layout_height="220dp"
+    android:layout_marginTop="20dp"
     android:layout_marginLeft="28dp"
     android:layout_marginRight="28dp"
     android:layout_alignParentLeft="true"
+    android:id="@+id/constraintTienda"
     android:layout_alignParentTop="true"
-    android:background="@drawable/prod_rectangulo"
+    android:background="@drawable/list_orden_rect"
     tools:context=".presentacion.fragmentos.ClienteHomeFragment">
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="304dp"
+        android:id="@+id/ivLogoTienda"
+        android:layout_width="220dp"
         android:layout_height="150dp"
-
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,13 +29,13 @@
     <TextView
         android:id="@+id/tvNombreProdList"
         android:layout_width="match_parent"
-        android:layout_height="16dp"
-        android:hint="Nombre Comida"
+        android:layout_height="wrap_content"
+        android:hint="Nombre Local"
         android:textColor="@color/black"
         android:layout_marginStart="20dp"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/ivLogoTienda" />
 </androidx.constraintlayout.widget.ConstraintLayout>
