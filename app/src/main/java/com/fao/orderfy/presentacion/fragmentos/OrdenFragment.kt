@@ -1,5 +1,6 @@
 package com.fao.orderfy.presentacion.fragmentos
 
+import android.content.DialogInterface
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.navigation.fragment.findNavController
@@ -62,9 +64,9 @@ class OrdenFragment : Fragment() {
             .into(fbinding.ivProd)
         fbinding.tvCantidadProd.text = cantidad.toString()
         fbinding.tvPrecioProd.text = producto.precio.toString()
-        val (subTotal, tarifaServicio, total) =calcularTotal(cantidad, producto.precio)
+
         fbinding.btnRealizarPedido.setOnClickListener {
-            realizarPedido(subTotal, tarifaServicio, total)
+            confirmPedido()
         }
     }
 
@@ -73,12 +75,20 @@ class OrdenFragment : Fragment() {
         val (producto, tienda, cantidad) = cargarDatos()
         val time = LocalTime.now()
         val tiempo = Time(time.hour, time.minute, time.second)
-        var orden = Orden(0, tiempo, tiempo, cantidad, 1, sesionCliente.idCliente, producto.idProducto)
+        var orden =
+            Orden(0, tiempo, tiempo, cantidad, 1, sesionCliente.idCliente, producto.idProducto)
         val viewModelOrden =
             ViewModelProvider(context as ViewModelStoreOwner)[ViewModelOrden::class.java]
         viewModelOrden.insertarOrden(object : MainListener {
             override fun onSuccess(response: JsonArray) {
-                val action = OrdenFragmentDirections.actionOrdenFragmentToOrdenRealizadaFragment(producto, tienda, orden,  subTotal, tarifaServicio, total)
+                val action = OrdenFragmentDirections.actionOrdenFragmentToOrdenRealizadaFragment(
+                    producto,
+                    tienda,
+                    orden,
+                    subTotal,
+                    tarifaServicio,
+                    total
+                )
                 findNavController().navigate(action)
 
             }
@@ -93,23 +103,40 @@ class OrdenFragment : Fragment() {
         }, orden)
 
 
-}
+    }
 
-private fun cargarDatos(): Triple<Producto, Tienda, Int> {
-    val producto = args.producto
-    val tienda = args.tienda
-    val cantidad = args.cantidad
-    return Triple(producto, tienda, cantidad)
-}
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun confirmPedido() {
+        val dialog = AlertDialog.Builder(requireContext())
+        dialog.setTitle("Confirmar Pedido")
+        dialog.setMessage("¿Desea hacer esta orden?")
+        dialog.setPositiveButton("SI", DialogInterface.OnClickListener { _, _ ->
+            val (producto, tienda, cantidad) = cargarDatos()
+            val (subTotal, tarifaServicio, total) = calcularTotal(cantidad, producto.precio)
+            realizarPedido(subTotal, tarifaServicio, total)
 
-private fun calcularTotal(cantidad: Int, precio: Float): Triple<Float, Int, Float> {
-    var subTotal = precio * cantidad
-    var tarifaServicio = 10
-    var total: Float = subTotal + tarifaServicio
-    fbinding.tvSubTotal.text = subTotal.toString()
-    fbinding.tvTarifaServicio.text = tarifaServicio.toString()
-    fbinding.tvTotal.text = total.toString()
-    return Triple(subTotal, tarifaServicio, total)
+        })
+        dialog.setNegativeButton("NO", DialogInterface.OnClickListener { _, _ ->
+            Toast.makeText(requireContext(), "Orden Cancelada", Toast.LENGTH_SHORT).show()
+        })
+        dialog.show()
+    }
 
-}
+    private fun cargarDatos(): Triple<Producto, Tienda, Int> {
+        val producto = args.producto
+        val tienda = args.tienda
+        val cantidad = args.cantidad
+        return Triple(producto, tienda, cantidad)
+    }
+
+    private fun calcularTotal(cantidad: Int, precio: Float): Triple<Float, Int, Float> {
+        var subTotal = precio * cantidad
+        var tarifaServicio = 10
+        var total: Float = subTotal + tarifaServicio
+        fbinding.tvSubTotal.text = subTotal.toString()
+        fbinding.tvTarifaServicio.text = tarifaServicio.toString()
+        fbinding.tvTotal.text = total.toString()
+        return Triple(subTotal, tarifaServicio, total)
+
+    }
 }

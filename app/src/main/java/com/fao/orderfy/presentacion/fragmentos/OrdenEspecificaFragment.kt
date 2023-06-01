@@ -148,7 +148,7 @@ class OrdenEspecificaFragment : Fragment() {
 
                 fbinding.tvTiempoPreparacion.text = "$formattedHours:$formattedTiempoEstimado"
             } else if (orden.estado == 1) {
-                fbinding.ivCazuela // Reemplaza "binding" con el nombre de tu objeto de enlace
+                fbinding.ivCazuela
                     .let { Glide.with(this).load(R.drawable.cocinando).into(it) }
                 fbinding.tvEnPreparacion.setTextColor(Color.parseColor("#1434DF"))
                 fbinding.tvEnPreparacion.text = "Listo"
